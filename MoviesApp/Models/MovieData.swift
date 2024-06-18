@@ -7,6 +7,18 @@
 
 import Foundation
 
-struct MovieData {
-    
+struct MovieRoot: Codable {
+    let results: [MovieData]
+}
+
+struct MovieData: Codable {
+    let id: Int?
+    let title: String?
+    let posterPath: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case posterPath = "poster_path"
+    }
 }
