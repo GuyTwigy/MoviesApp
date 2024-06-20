@@ -15,11 +15,13 @@ class NetworkManager: FetchMoviesProtocol {
     
     var baseUrl = "https://api.themoviedb.org/3"
     let apiKey = "ab0f464004f9fe46240dab71b2b89a08"
-    func fetchMovies(query: String, region: String? = nil, year: Int? = nil, primaryReleaseYear: Int? = nil) async throws -> [MovieData] {
+    
+    func fetchMovies(query: String, region: String? = nil, year: Int? = nil, primaryReleaseYear: Int? = nil, page: Int = 1) async throws -> MoviesRoot {
         var components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.search.description)\(AppConstant.EndPoints.movie.description)")
         
         components?.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey),
+
             URLQueryItem(name: "query", value: query),
             URLQueryItem(name: "page", value: String(page)),
         ]
