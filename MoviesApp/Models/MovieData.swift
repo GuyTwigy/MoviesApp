@@ -27,6 +27,7 @@ struct MovieData: Codable {
     let releaseDate: String?
     let originalLanguage: String?
     let voteAverage: Double?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title

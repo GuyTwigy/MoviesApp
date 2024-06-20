@@ -2,16 +2,10 @@
 //  MovieCell.swift
 //  MoviesApp
 //
-//  Created by Guy Twig on 19/06/2024.
+//  Created by Guy Twig on 20/06/2024.
 //
 
 import UIKit
-<<<<<<< Updated upstream
-
-class MovieCell: UICollectionViewCell {
-
-=======
-import Kingfisher
 
 class MovieCell: UICollectionViewCell {
 
@@ -20,7 +14,7 @@ class MovieCell: UICollectionViewCell {
             loader.startAnimating()
         }
     }
->>>>>>> Stashed changes
+
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var thumbnailImage: UIImageView!
     
@@ -28,11 +22,6 @@ class MovieCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-<<<<<<< Updated upstream
-    func setupCellContent(movie: MovieData) {
-        titleLbl.text = movie.title
-        
-=======
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLbl.text = ""
@@ -43,9 +32,9 @@ class MovieCell: UICollectionViewCell {
         loader.startAnimating()
         titleLbl.text = movie.title
         if let imaggeUrl = Utils.getImageUrl(posterPath: movie.posterPath ?? "") {
-            thumbnailImage.kf.setImage(with: imaggeUrl, placeholder: UIImage(named: "noImagePlaceholder"))
+//            thumbnailImage.kf.setImage(with: imaggeUrl, placeholder: UIImage(named: "noImagePlaceholder"))
             loader.stopAnimating()
         }
->>>>>>> Stashed changes
     }
 }
+

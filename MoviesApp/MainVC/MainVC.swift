@@ -10,15 +10,6 @@ import UIKit
 class MainVC: UIViewController {
 
     private var vm: MainVM?
-<<<<<<< Updated upstream
-    private var movies: [MovieData] = []
-    
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var moviesCollectionView: UICollectionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-=======
     private var moviesData: MoviesRoot?
     private var movies: [MovieData] = []
     
@@ -30,17 +21,10 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround(cancelTouches: false)
->>>>>>> Stashed changes
         setupCollectionView()
         setupTextField()
         vm = MainVM()
         vm?.delegate = self
-<<<<<<< Updated upstream
-        Task {
-            await vm?.fetchMovies(query: "insep")
-        }
-=======
->>>>>>> Stashed changes
     }
     
     func setupCollectionView() {
@@ -55,13 +39,8 @@ class MainVC: UIViewController {
     }
     
     func createLayout() -> UICollectionViewLayout {
-<<<<<<< Updated upstream
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalWidth(1/2))
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1/2))
-=======
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalWidth(3/4))
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(3/4))
->>>>>>> Stashed changes
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -83,8 +62,6 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         return cell
     }
     
-<<<<<<< Updated upstream
-=======
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if (moviesData?.results?.count ?? 0) - 5 <= indexPath.row && moviesData?.page ?? 10 < moviesData?.totalPages ?? 100 {
             Task {
@@ -99,7 +76,6 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         navigationController?.pushViewController(vc, animated: true)
     }
     
->>>>>>> Stashed changes
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchTextField.resignFirstResponder()
     }
@@ -107,24 +83,16 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
 extension MainVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-<<<<<<< Updated upstream
-        
-=======
         loader.startAnimating()
         movies.removeAll()
         Task {
             await vm?.fetchMovies(query: textField.text ?? "", page: 1)
         }
->>>>>>> Stashed changes
     }
 }
 
 extension MainVC: MainVMDelagate {
-<<<<<<< Updated upstream
-    func moviesFetched(movies: [MovieData], error: Error?) {
-=======
     func moviesFetched(moviesData: MoviesRoot?, addContent: Bool, error: Error?) {
->>>>>>> Stashed changes
         DispatchQueue.main.async { [weak self] in
             guard let self else {
                 return
@@ -132,13 +100,6 @@ extension MainVC: MainVMDelagate {
             
             if let error {
                 self.showAlert(title: "Data fail to fetched", message: error.localizedDescription)
-<<<<<<< Updated upstream
-            } else {
-                self.movies.removeAll()
-                self.movies = movies
-                moviesCollectionView.reloadData()
-            }
-=======
             } else if addContent {
                 let startIndex = self.movies.count
                 self.moviesData = moviesData
@@ -161,7 +122,6 @@ extension MainVC: MainVMDelagate {
             }
             self.emptyIndicationLbl.isHidden = !self.movies.isEmpty
             loader.stopAnimating()
->>>>>>> Stashed changes
         }
     }
 }
