@@ -32,7 +32,7 @@ class MovieCell: UICollectionViewCell {
         loader.startAnimating()
         titleLbl.text = movie.title
         if let imaggeUrl = Utils.getImageUrl(posterPath: movie.posterPath ?? "") {
-//            thumbnailImage.kf.setImage(with: imaggeUrl, placeholder: UIImage(named: "noImagePlaceholder"))
+            thumbnailImage.sd_setImage(with: imaggeUrl, placeholderImage: UIImage(named: "noImagePlaceholder"))
             loader.stopAnimating()
         }
     }
