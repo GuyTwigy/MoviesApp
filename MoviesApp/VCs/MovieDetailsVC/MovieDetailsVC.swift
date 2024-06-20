@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieDetailsVC: UIViewController {
 
@@ -58,7 +59,10 @@ extension MovieDetailsVC: UITableViewDelegate, UITableViewDataSource {
             }
             cell = imageCell
         } else if detailsArr.count + 1 == indexPath.row {
-            
+            let trailerCell = tableView.dequeueReusableCell(withIdentifier: "DetailTrailerShareCell", for: indexPath) as! DetailTrailerShareCell
+            trailerCell.setupCellContent(isVideo: movie?.video ?? false)
+            trailerCell.delegate = self
+            cell = trailerCell
         }
         cell.selectionStyle = .none
         return cell
@@ -66,6 +70,31 @@ extension MovieDetailsVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MovieDetailsVC: MovieDetailsVMDelegate {
+    func videoFetched(video: VideoData?, error: Error?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            
+            if let error {
+                self.showAlert(title: "Data fail to fetched trailer", message: error.localizedDescription)
+            } else if let video {
+                let vc = TrailerVC()
+                vc.videoKey = video.key
+                vc.modalPresentationStyle = .pageSheet
+                
+                if let sheet = vc.sheetPresentationController {
+                    sheet.detents = [.large()]
+                    sheet.prefersGrabberVisible = true
+                }
+                
+                self.present(vc, animated: true, completion: nil)
+            } else {
+                self.showAlert(title: "This movie has no trailer", message: "")
+            }
+        }
+    }
+    
     func updateUI(movie: MovieData?, detailsArr: [MovieDetailsVM.SingleDetail], error: Error?) {
         DispatchQueue.main.async { [weak self] in
             guard let self else {
@@ -84,3 +113,36 @@ extension MovieDetailsVC: MovieDetailsVMDelegate {
         }
     }
 }
+
+extension MovieDetailsVC: DetailTrailerShareCellDelegate {
+    func showTrailerTapped() {
+        Task {
+            await vm?.getTrailer(id: movie?.id ?? 0)
+        }
+    }
+    
+    func shareTapped() {
+        guard let movie else {
+            return
+        }
+        
+        let movieDetails = """
+                Movie Name: \(movie.title ?? "Not available")
+                Language: \(movie.originalLanguage ?? "Not available")
+                Release Date: \(movie.releaseDate ?? "Not available")
+                Rating: \(movie.voteAverage?.description ?? "-")/10
+                """
+        
+        var itemsToShare: [Any] = [movieDetails]
+        
+        SDWebImageManager.shared.loadImage(with: Utils.getImageUrl(posterPath: movie.posterPath ?? ""), options: .highPriority, progress: nil) { image, data, error, cacheType, finished, imageURL in
+            if let image {
+                itemsToShare.append(image)
+            }
+            
+            let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+}
+
