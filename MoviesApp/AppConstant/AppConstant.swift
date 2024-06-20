@@ -12,6 +12,7 @@ struct AppConstant {
     enum EndPoints {
         case search
         case movie
+        case video
         
         var description: String {
             switch self {
@@ -19,6 +20,8 @@ struct AppConstant {
                 return "/search"
             case .movie:
                 return "/movie"
+            case .video:
+                return "/videos"
             }
         }
     }

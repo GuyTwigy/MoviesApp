@@ -21,7 +21,6 @@ class NetworkManager: FetchMoviesProtocol {
         
         components?.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey),
-
             URLQueryItem(name: "query", value: query),
             URLQueryItem(name: "page", value: String(page)),
         ]
@@ -53,5 +52,39 @@ class NetworkManager: FetchMoviesProtocol {
     func getImageUrl(posterPath: String, size: String = "w500") -> URL? {
         let fullPath = "https://image.tmdb.org/t/p/\(size)\(posterPath)"
         return URL(string: fullPath)
+    }
+}
+
+protocol GetTrailer {
+    func getTrailer(id: String) async throws -> [VideoData]
+}
+
+extension NetworkManager: GetTrailer {
+    
+    func getTrailer(id: String) async throws -> [VideoData] {
+        var components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)\(AppConstant.EndPoints.video.description)")
+        
+        components?.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey),
+        ]
+        
+        guard let url = components?.url else {
+            throw URLError(.badURL)
+        }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw URLError(.badServerResponse)
+            }
+            guard (200...299).contains(httpResponse.statusCode) else {
+                throw URLError(.badServerResponse)
+            }
+            
+            let videoResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
+            return videoResponse.results
+        } catch {
+            throw error
+        }
     }
 }

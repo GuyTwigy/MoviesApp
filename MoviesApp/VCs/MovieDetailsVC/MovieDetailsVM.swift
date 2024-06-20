@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieDetailsVMDelegate: AnyObject {
     func updateUI(movie: MovieData?, detailsArr: [MovieDetailsVM.SingleDetail], error: Error?)
+    func videoFetched(video: VideoData?, error: Error?)
 }
 
 class MovieDetailsVM {
@@ -18,9 +19,10 @@ class MovieDetailsVM {
         let description: String
     }
     
-    var movie: MovieData?
-    var detailsArr: [SingleDetail] = []
+    private var movie: MovieData?
+    private var detailsArr: [SingleDetail] = []
     weak var delegate: MovieDetailsVMDelegate?
+    private var networkManager = NetworkManager()
     
     init(movie: MovieData) {
         self.movie = movie
@@ -30,12 +32,22 @@ class MovieDetailsVM {
         if let movie {
             detailsArr.removeAll()
             detailsArr = [SingleDetail(title: "Overiew:", description: movie.overview ?? "Not Available"),
-                          SingleDetail(title: "Release Date:", description: movie.releaseDate ?? "Not Available"),
+                          SingleDetail(title: "Rating:", description: "\(movie.voteAverage?.description ?? "-")/10"),
                           SingleDetail(title: "Language:", description: movie.originalLanguage ?? "Not Available"),
-                          SingleDetail(title: "Rating:", description: "\(movie.voteAverage ?? 0.0)/10")]
+                          SingleDetail(title: "Release Date:", description: movie.releaseDate ?? "Not Available")]
             delegate?.updateUI(movie: movie, detailsArr: detailsArr, error: nil)
         } else {
             delegate?.updateUI(movie: movie, detailsArr: detailsArr, error: URLError.cannotDecodeContentData as? Error)
+        }
+    }
+    
+    func getTrailer(id: Int) async {
+        do {
+            let videoData = try await networkManager.getTrailer(id: String(id))
+            delegate?.videoFetched(video: videoData.first, error: nil)
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            delegate?.videoFetched(video: nil, error: error)
         }
     }
 }
