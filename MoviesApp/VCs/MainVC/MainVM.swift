@@ -12,13 +12,12 @@ protocol MainVMDelagate: AnyObject {
 }
 
 class MainVM {
-    
     weak var delegate: MainVMDelagate?
     private var networkManager = NetworkManager()
     
-    func fetchMovies(query: String, page: Int) async {
+    func fetchMovies(optionSelection: OptionsSelection, query: String, page: Int) async {
         do {
-            let moviesData = try await networkManager.fetchMovies(query: query, page: page)
+            let moviesData = try await networkManager.fetchMovies(optionSelected: optionSelection, query: query, page: page)
             delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, error: nil)
         } catch {
             print("Error: \(error.localizedDescription)")

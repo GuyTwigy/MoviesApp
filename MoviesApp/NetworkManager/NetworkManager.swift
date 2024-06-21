@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FetchMoviesProtocol {
-    func fetchMovies(query: String, region: String?, year: Int?, primaryReleaseYear: Int?, page: Int) async throws -> MoviesRoot
+    func fetchMovies(optionSelected: OptionsSelection, query: String, page: Int) async throws -> MoviesRoot
 }
 
 class NetworkManager: FetchMoviesProtocol {
@@ -16,20 +16,55 @@ class NetworkManager: FetchMoviesProtocol {
     var baseUrl = "https://api.themoviedb.org/3"
     let apiKey = "ab0f464004f9fe46240dab71b2b89a08"
     
-    func fetchMovies(query: String, region: String? = nil, year: Int? = nil, primaryReleaseYear: Int? = nil, page: Int = 1) async throws -> MoviesRoot {
-        var components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.search.description)\(AppConstant.EndPoints.movie.description)")
-        
-        components?.queryItems = [
-            URLQueryItem(name: "api_key", value: apiKey),
-            URLQueryItem(name: "query", value: query),
-            URLQueryItem(name: "page", value: String(page)),
-        ]
-        
-        if let year {
-            components?.queryItems?.append(URLQueryItem(name: "year", value: String(year)))
+    func fetchMovies(optionSelected: OptionsSelection, query: String = "", page: Int = 1) async throws -> MoviesRoot {
+        var components = URLComponents()
+        switch optionSelected {
+        case .top:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.topRated.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .popular:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.popular.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .trending:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.trending.description)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.week.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .nowPlaying:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.nowPlaying.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .upcoming:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.upcoming.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .search:
+            components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.search.description)\(AppConstant.EndPoints.movie.description)") ?? URLComponents()
+            
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "query", value: query),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
         }
         
-        guard let url = components?.url else {
+        guard let url = components.url else {
             throw URLError(.badURL)
         }
         
