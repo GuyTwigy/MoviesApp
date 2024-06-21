@@ -55,19 +55,26 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-nn-MGR">
-                                <rect key="frame" x="0.0" y="178" width="393" height="125"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-nn-MGR">
+                                <rect key="frame" x="0.0" y="178" width="393" height="130"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NN5-5I-nml">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="h0z-R3-mPA"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NN5-5I-nml">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="kNO-Mc-NCf">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="130"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells/>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TRM-57-smC">
-                                <rect key="frame" x="0.0" y="303" width="393" height="549"/>
+                                <rect key="frame" x="0.0" y="308" width="393" height="544"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Nw-nq-cjm">
                                     <size key="itemSize" width="128" height="128"/>
@@ -86,7 +93,7 @@ Please enter a movie name</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0vd-qR-sMl">
-                                <rect key="frame" x="186.66666666666666" y="303" width="20" height="20"/>
+                                <rect key="frame" x="186.66666666666666" y="358" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -94,9 +101,8 @@ Please enter a movie name</string>
                         <constraints>
                             <constraint firstItem="RdS-Qf-5t8" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="Bht-6a-0MZ"/>
                             <constraint firstItem="wd1-nn-MGR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="D4u-eP-x4O"/>
-                            <constraint firstItem="TRM-57-smC" firstAttribute="top" secondItem="RdS-Qf-5t8" secondAttribute="bottom" constant="180" id="Gqt-9d-MdR"/>
-                            <constraint firstItem="0vd-qR-sMl" firstAttribute="top" secondItem="RdS-Qf-5t8" secondAttribute="bottom" constant="180" id="JmV-ba-2jG"/>
                             <constraint firstItem="wd1-nn-MGR" firstAttribute="top" secondItem="anf-dI-hxH" secondAttribute="bottom" id="QLG-6C-iIO"/>
+                            <constraint firstItem="0vd-qR-sMl" firstAttribute="top" secondItem="wd1-nn-MGR" secondAttribute="bottom" constant="50" id="d4b-Q5-LQC"/>
                             <constraint firstItem="RdS-Qf-5t8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="-30" id="dCN-CJ-HU7"/>
                             <constraint firstAttribute="bottom" secondItem="TRM-57-smC" secondAttribute="bottom" id="dN2-kH-Wa6"/>
                             <constraint firstItem="RdS-Qf-5t8" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="gsQ-Cj-UKV"/>
@@ -119,6 +125,7 @@ Please enter a movie name</string>
                         <outlet property="moviesCollectionView" destination="TRM-57-smC" id="1rQ-UE-f24"/>
                         <outlet property="optionsCollectionView" destination="anf-dI-hxH" id="rkV-T2-iPq"/>
                         <outlet property="searchTextField" destination="RdS-Qf-5t8" id="noZ-Al-ujH"/>
+                        <outlet property="suggestionLoader" destination="kNO-Mc-NCf" id="Qmb-Li-6q6"/>
                         <outlet property="suggestionsCollectionView" destination="wd1-nn-MGR" id="WZl-Rz-SuT"/>
                     </connections>
                 </viewController>

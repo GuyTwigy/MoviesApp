@@ -9,6 +9,7 @@ import Foundation
 
 protocol FetchMoviesProtocol {
     func fetchMovies(optionSelected: OptionsSelection, query: String, page: Int) async throws -> MoviesRoot
+    func fetchMultipleSuggestions(ids: [String]) async throws -> [MovieData]
 }
 
 class NetworkManager: FetchMoviesProtocol {
@@ -84,9 +85,48 @@ class NetworkManager: FetchMoviesProtocol {
         }
     }
     
-    func getImageUrl(posterPath: String, size: String = "w500") -> URL? {
-        let fullPath = "https://image.tmdb.org/t/p/\(size)\(posterPath)"
-        return URL(string: fullPath)
+    func fetchSingleSuggestion(id: String) async throws -> MovieData {
+        let url = URL(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)?api_key=\(apiKey)")
+        guard let url else {
+            throw URLError(.badURL)
+        }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw URLError(.badServerResponse)
+            }
+            guard (200...299).contains(httpResponse.statusCode) else {
+                throw URLError(.badServerResponse)
+            }
+            
+            let movie = try JSONDecoder().decode(MovieData.self, from: data)
+            return movie
+        } catch {
+            throw error
+        }
+    }
+    
+    func fetchMultipleSuggestions(ids: [String]) async throws -> [MovieData] {
+        try await withThrowingTaskGroup(of: MovieData.self) { group in
+            var movies: [MovieData] = []
+            
+            for id in ids {
+                group.addTask { [weak self] in
+                    guard let self else {
+                        throw URLError(.badServerResponse)
+                    }
+                    
+                    return try await self.fetchSingleSuggestion(id: id)
+                }
+            }
+            
+            for try await movie in group {
+                movies.append(movie)
+            }
+            
+            return movies
+        }
     }
 }
 

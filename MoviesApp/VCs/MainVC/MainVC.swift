@@ -16,7 +16,16 @@ class MainVC: UIViewController {
     private var suggestedMovies: [MovieData] = []
     private var optionSelected: OptionsSelection = .top
     
-    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIActivityIndicatorView! {
+        didSet {
+            loader.startAnimating()
+        }
+    }
+    @IBOutlet weak var suggestionLoader: UIActivityIndicatorView! {
+        didSet {
+            suggestionLoader.startAnimating()
+        }
+    }
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var optionsCollectionView: UICollectionView!
@@ -30,9 +39,9 @@ class MainVC: UIViewController {
         setupTextField()
         vm = MainVM()
         vm?.delegate = self
-        loader.startAnimating()
         Task {
             await vm?.fetchMovies(optionSelection: .top, query: "", page: 1)
+            await vm?.fetchSuggestion()
         }
     }
     
@@ -130,6 +139,10 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let width = (view.frame.width) / 3.5
             let height = (collectionView.frame.height) * 0.9
             return CGSize(width: width, height: height)
+        } else if collectionView == suggestionsCollectionView {
+            let width = (view.frame.width) / 1.5
+            let height = collectionView.frame.height
+            return CGSize(width: width, height: height)
         } else {
             return CGSize(width: 100, height: 100)
         }
@@ -168,6 +181,23 @@ extension MainVC: UITextFieldDelegate {
 }
 
 extension MainVC: MainVMDelagate {
+    func suggestionFetched(movies: [MovieData], error: Error?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            
+            if let error {
+                self.showAlert(title: "Data fail to fetched", message: error.localizedDescription)
+            } else {
+                self.suggestedMovies.removeAll()
+                self.suggestedMovies = movies
+                self.suggestionsCollectionView.reloadData()
+            }
+            self.suggestionLoader.stopAnimating()
+        }
+    }
+    
     func moviesFetched(moviesData: MoviesRoot?, addContent: Bool, error: Error?) {
         DispatchQueue.main.async { [weak self] in
             guard let self else {
