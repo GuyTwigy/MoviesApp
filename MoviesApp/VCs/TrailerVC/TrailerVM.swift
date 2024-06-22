@@ -14,9 +14,14 @@ protocol TrailerVMDelegate: AnyObject {
 class TrailerVM {
     
     weak var delegate: TrailerVMDelegate?
+    var videoKey: String
     
-    func loadVideo(key: String) {
-        let urlString = "https://www.youtube.com/embed/\(key)"
+    init(videoKey: String) {
+        self.videoKey = videoKey
+    }
+    
+    func loadVideo() {
+        let urlString = "https://www.youtube.com/embed/\(videoKey)"
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             delegate?.showVideo(request: request)

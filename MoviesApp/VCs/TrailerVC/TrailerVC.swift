@@ -11,18 +11,20 @@ import WebKit
 class TrailerVC: UIViewController {
     
     var vm: TrailerVM?
-    var videoKey: String?
     
     @IBOutlet weak var containerView: UIView!
     private var webView: WKWebView!
     
+    @IBOutlet weak var loader: UIActivityIndicatorView! {
+        didSet {
+            loader.startAnimating()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm = TrailerVM()
         vm?.delegate = self
-        if let videoKey {
-            vm?.loadVideo(key: videoKey)
-        }
+        vm?.loadVideo()
         webView = WKWebView(frame: containerView.frame)
         containerView.addSubview(webView)
     }
@@ -40,6 +42,7 @@ extension TrailerVC: TrailerVMDelegate {
             } else {
                 self.showAlert(title: "Fail To Present Trailer", message: "")
             }
+            self.loader.stopAnimating()
         }
     }
 }
