@@ -28,6 +28,7 @@
 		9D55D24F2C220CCF000FEFAB /* MoviesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D24E2C220CCF000FEFAB /* MoviesAppUITests.swift */; };
 		9D55D2512C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D2502C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift */; };
 		9D55D2652C22205A000FEFAB /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D2642C22205A000FEFAB /* AppConstant.swift */; };
+		9D7CBC852C27893B004AEDBB /* TrailerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7CBC842C27893B004AEDBB /* TrailerVM.swift */; };
 		9D87DA2C2C2763460057EA83 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D87DA2B2C2763460057EA83 /* CoreData.framework */; };
 		9D87DA2F2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D87DA2D2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld */; };
 		9D87DA322C27677D0057EA83 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D87DA312C27677D0057EA83 /* CoreDataManager.swift */; };
@@ -99,6 +100,7 @@
 		9D55D24E2C220CCF000FEFAB /* MoviesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITests.swift; sourceTree = "<group>"; };
 		9D55D2502C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9D55D2642C22205A000FEFAB /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		9D7CBC842C27893B004AEDBB /* TrailerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerVM.swift; sourceTree = "<group>"; };
 		9D87DA2B2C2763460057EA83 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9D87DA2E2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviesAppCoreData.xcdatamodel; sourceTree = "<group>"; };
 		9D87DA312C27677D0057EA83 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		9D43F27D2C244801009A4613 /* TrailerVC */ = {
 			isa = PBXGroup;
 			children = (
+				9D7CBC842C27893B004AEDBB /* TrailerVM.swift */,
 				9D43F27E2C244821009A4613 /* TrailerVC.swift */,
 				9D43F27F2C244821009A4613 /* TrailerVC.xib */,
 			);
@@ -615,6 +618,7 @@
 				9D9AF36C2C256EDC00C2A549 /* OptionsCell.swift in Sources */,
 				9D06B23A2C245466005CC698 /* DetailImageCell.swift in Sources */,
 				9D9AF3762C274FA600C2A549 /* MovieCell.swift in Sources */,
+				9D7CBC852C27893B004AEDBB /* TrailerVM.swift in Sources */,
 				9D87DA2F2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld in Sources */,
 				9D55D2652C22205A000FEFAB /* AppConstant.swift in Sources */,
 				9D9AF3702C256EEE00C2A549 /* SuggestionsCell.swift in Sources */,
