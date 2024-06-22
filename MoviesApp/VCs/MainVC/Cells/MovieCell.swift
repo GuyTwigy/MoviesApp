@@ -8,7 +8,8 @@
 import UIKit
 import SDWebImage
 
-class MovieCell: UICollectionViewCell {
+
+class MovieCell: UITableViewCell {
 
     @IBOutlet weak var loader: UIActivityIndicatorView! {
         didSet {

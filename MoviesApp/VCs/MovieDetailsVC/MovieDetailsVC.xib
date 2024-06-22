@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emt-lQ-BQb">
-                    <rect key="frame" x="10" y="59" width="373" height="36"/>
+                    <rect key="frame" x="10" y="109" width="373" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hCF-y0-hlB">
-                    <rect key="frame" x="0.0" y="105" width="393" height="747"/>
+                    <rect key="frame" x="0.0" y="155" width="393" height="697"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="71C-lm-EK8">
@@ -37,24 +37,49 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="color" systemColor="labelColor"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY1-sh-DPQ">
+                    <rect key="frame" x="20" y="59" width="50" height="50"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="q0m-Km-mch"/>
+                        <constraint firstAttribute="height" constant="50" id="thk-ej-jl9"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="backTapped:" destination="-1" eventType="touchUpInside" id="d2U-f4-Nc7"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="emt-lQ-BQb" firstAttribute="top" secondItem="jY1-sh-DPQ" secondAttribute="bottom" id="AHg-Q0-aUp"/>
+                <constraint firstItem="jY1-sh-DPQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GhL-oD-VG8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCF-y0-hlB" secondAttribute="trailing" id="MsG-8O-yH7"/>
+                <constraint firstItem="jY1-sh-DPQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NPO-71-S2W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="emt-lQ-BQb" secondAttribute="trailing" constant="10" id="RPR-B2-UUc"/>
                 <constraint firstAttribute="bottom" secondItem="hCF-y0-hlB" secondAttribute="bottom" id="Sve-yo-xVr"/>
                 <constraint firstItem="emt-lQ-BQb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="e73-dO-1W8"/>
                 <constraint firstItem="hCF-y0-hlB" firstAttribute="top" secondItem="emt-lQ-BQb" secondAttribute="bottom" constant="10" id="gqT-Lu-jes"/>
                 <constraint firstItem="hCF-y0-hlB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nDg-hm-33U"/>
-                <constraint firstItem="emt-lQ-BQb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ycW-7J-RGs"/>
             </constraints>
             <point key="canvasLocation" x="-153" y="-12"/>
         </view>
     </objects>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

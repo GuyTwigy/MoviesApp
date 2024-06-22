@@ -28,8 +28,7 @@ class MainVM {
     
     func fetchSuggestion() async {
         do {
-            
-            let movies = try await networkManager.fetchMultipleSuggestions(ids: ["667257", "1058694", "598", "311", "704264"])
+            let movies = try await networkManager.fetchMultipleSuggestions(ids: ["1817", "745", "769", "429", "278"])
             delegate?.suggestionFetched(movies: movies, error: nil)
         } catch {
             print("Error: \(error.localizedDescription)")

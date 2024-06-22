@@ -26,16 +26,18 @@ class MainVC: UIViewController {
             suggestionLoader.startAnimating()
         }
     }
+    @IBOutlet weak var titleOptionsLbl: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var moviesCollectionView: UICollectionView!
+    @IBOutlet weak var tblMovies: UITableView!
     @IBOutlet weak var optionsCollectionView: UICollectionView!
     @IBOutlet weak var suggestionsCollectionView: UICollectionView!
     @IBOutlet weak var emptyIndicationLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         hideKeyboardWhenTappedAround(cancelTouches: false)
-        setupCollectionViews()
+        setupCollectionViewsAndTableView()
         setupTextField()
         vm = MainVM()
         vm?.delegate = self
@@ -45,11 +47,10 @@ class MainVC: UIViewController {
         }
     }
     
-    func setupCollectionViews() {
-        moviesCollectionView.delegate = self
-        moviesCollectionView.dataSource = self
-        moviesCollectionView.collectionViewLayout = createLayout()
-        moviesCollectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
+    func setupCollectionViewsAndTableView() {
+        tblMovies.delegate = self
+        tblMovies.dataSource = self
+        tblMovies.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
         
         optionsCollectionView.delegate = self
         optionsCollectionView.dataSource = self
@@ -87,21 +88,63 @@ class MainVC: UIViewController {
     }
     
     func flipAndHideContentView() {
-        UIView.transition(with: moviesCollectionView, duration: 0.5, options: .transitionFlipFromLeft, animations: { [weak self] in
+        UIView.transition(with: tblMovies, duration: 0.5, options: .transitionFlipFromLeft, animations: { [weak self] in
             guard let self else {
                 return
             }
             
-            self.moviesCollectionView.reloadData()
+            switch optionSelected {
+            case .top:
+                titleOptionsLbl.text = "Top Rated Movies"
+            case .popular:
+                titleOptionsLbl.text = "Popular Movies"
+            case .trending:
+                titleOptionsLbl.text = "Trending Movies"
+            case .nowPlaying:
+                titleOptionsLbl.text = "Now Playing Movies"
+            case .upcoming:
+                titleOptionsLbl.text = "Upcoming Movies"
+            case .search:
+                titleOptionsLbl.text = "Search results for: \(searchTextField.text ?? "")"
+            }
+            self.tblMovies.reloadData()
         })
+    }
+}
+
+extension MainVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        movies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        cell.setupCellContent(movie: movies[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieDetailsVC()
+        vc.vm = MovieDetailsVM(movie: movies[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (moviesData?.results?.count ?? 0) - 5 <= indexPath.row && moviesData?.page ?? 10 < moviesData?.totalPages ?? 100 {
+            Task {
+                await vm?.fetchMovies(optionSelection: optionSelected, query: searchTextField.text ?? "", page: (moviesData?.page ?? 0) + 1)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
     }
 }
 
 extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == moviesCollectionView {
-            return movies.count
-        } else if collectionView == optionsCollectionView {
+        if collectionView == optionsCollectionView {
             return optionsArr.count
         } else {
             return suggestedMovies.count
@@ -109,11 +152,7 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == moviesCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-            cell.setupCellContent(movie: movies[indexPath.row])
-            return cell
-        } else if collectionView == optionsCollectionView {
+        if collectionView == optionsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
             cell.setupCellContent(title: optionsArr[indexPath.row], isSelected: optionsArr[indexPath.row] == optionSelected.rawValue )
             return cell
@@ -124,23 +163,13 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if collectionView == moviesCollectionView {
-            if (moviesData?.results?.count ?? 0) - 5 <= indexPath.row && moviesData?.page ?? 10 < moviesData?.totalPages ?? 100 {
-                Task {
-                    await vm?.fetchMovies(optionSelection: optionSelected, query: searchTextField.text ?? "", page: (moviesData?.page ?? 0) + 1)
-                }
-            }
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == optionsCollectionView {
-            let width = (view.frame.width) / 3.5
+            let width = (UIScreen.main.bounds.width) / 3.5
             let height = (collectionView.frame.height) * 0.9
             return CGSize(width: width, height: height)
         } else if collectionView == suggestionsCollectionView {
-            let width = (view.frame.width) / 1.5
+            let width = (UIScreen.main.bounds.width) / 1.5
             let height = collectionView.frame.height
             return CGSize(width: width, height: height)
         } else {
@@ -149,11 +178,7 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == moviesCollectionView {
-            let vc = MovieDetailsVC()
-            vc.vm = MovieDetailsVM(movie: movies[indexPath.row])
-            navigationController?.pushViewController(vc, animated: true)
-        } else if collectionView == optionsCollectionView {
+       if collectionView == optionsCollectionView {
             optionSelected = OptionsSelection(intValue: indexPath.row)
             optionsCollectionView.reloadData()
             optionTapped()
@@ -173,7 +198,11 @@ extension MainVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         loader.startAnimating()
         movies.removeAll()
-        optionSelected = .search
+        if optionSelected != .search {
+            optionsCollectionView.reloadData()
+            optionSelected = .search
+        }
+        titleOptionsLbl.text = "Search results for: '\(searchTextField.text ?? "")'"
         Task {
             await vm?.fetchMovies(optionSelection: .search, query: textField.text ?? "", page: 1)
         }
@@ -216,15 +245,15 @@ extension MainVC: MainVMDelagate {
                     IndexPath(row: $0, section: 0)
                 }
                 
-                self.moviesCollectionView.performBatchUpdates({
-                    self.moviesCollectionView.insertItems(at: indexPaths)
+                self.tblMovies.performBatchUpdates({
+                    self.tblMovies.insertRows(at: indexPaths, with: .automatic)
                 })
             } else {
                 self.moviesData = nil
                 self.movies.removeAll()
                 self.moviesData = moviesData
                 self.movies = moviesData?.results ?? []
-                moviesCollectionView.reloadData()
+                tblMovies.reloadData()
             }
             self.emptyIndicationLbl.isHidden = !self.movies.isEmpty
             loader.stopAnimating()

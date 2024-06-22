@@ -50,6 +50,12 @@ extension UIViewController {
 }
 
 extension UIViewController {
+    func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension UIViewController {
     func addRefreshControl(to scrollView: UIScrollView, action: Selector) {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: action, for: .valueChanged)
