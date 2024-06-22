@@ -28,6 +28,9 @@
 		9D55D24F2C220CCF000FEFAB /* MoviesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D24E2C220CCF000FEFAB /* MoviesAppUITests.swift */; };
 		9D55D2512C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D2502C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift */; };
 		9D55D2652C22205A000FEFAB /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55D2642C22205A000FEFAB /* AppConstant.swift */; };
+		9D87DA2C2C2763460057EA83 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D87DA2B2C2763460057EA83 /* CoreData.framework */; };
+		9D87DA2F2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D87DA2D2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld */; };
+		9D87DA322C27677D0057EA83 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D87DA312C27677D0057EA83 /* CoreDataManager.swift */; };
 		9D8C0DA12C242D9C00585EB7 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0D9C2C242D9C00585EB7 /* MainVM.swift */; };
 		9D8C0DA42C242D9C00585EB7 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA02C242D9C00585EB7 /* MainVC.swift */; };
 		9D8C0DA62C242E7F00585EB7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA52C242E7F00585EB7 /* NetworkManager.swift */; };
@@ -96,6 +99,9 @@
 		9D55D24E2C220CCF000FEFAB /* MoviesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITests.swift; sourceTree = "<group>"; };
 		9D55D2502C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9D55D2642C22205A000FEFAB /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		9D87DA2B2C2763460057EA83 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9D87DA2E2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviesAppCoreData.xcdatamodel; sourceTree = "<group>"; };
+		9D87DA312C27677D0057EA83 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9D8C0D9C2C242D9C00585EB7 /* MainVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		9D8C0DA02C242D9C00585EB7 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9D8C0DA52C242E7F00585EB7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2CD35AB88A30FF9A99BD21B /* Pods_MoviesApp.framework in Frameworks */,
+				9D87DA2C2C2763460057EA83 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +153,7 @@
 		967F68173EC96A1B45DCD80C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D87DA2B2C2763460057EA83 /* CoreData.framework */,
 				109CC0CD8A56CFE6EBDE0A89 /* Pods_MoviesApp.framework */,
 				2896B6169017FCF97F8481D4 /* Pods_MoviesApp_MoviesAppUITests.framework */,
 				533FC33BE38C78B386BB8830 /* Pods_MoviesAppTests.framework */,
@@ -226,6 +234,7 @@
 				9D55D2362C220CCE000FEFAB /* Assets.xcassets */,
 				9D55D2382C220CCE000FEFAB /* LaunchScreen.storyboard */,
 				9D55D23B2C220CCE000FEFAB /* Info.plist */,
+				9D87DA302C2767600057EA83 /* CoreData */,
 				9D55D2602C220FFA000FEFAB /* Models */,
 				9D55D25D2C220F30000FEFAB /* NetworkManager */,
 				9D55D2632C22204A000FEFAB /* AppConstant */,
@@ -297,6 +306,15 @@
 				9D8C0DA92C242F0000585EB7 /* ExtensionUIViewController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9D87DA302C2767600057EA83 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9D87DA2D2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld */,
+				9D87DA312C27677D0057EA83 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9D8C0D9D2C242D9C00585EB7 /* Cells */ = {
@@ -589,6 +607,7 @@
 				9D06B23D2C245466005CC698 /* DetailTrailerShareCell.swift in Sources */,
 				9D8C0DAB2C242F0000585EB7 /* ExtensionUIViewController.swift in Sources */,
 				9D8C0DAC2C242F0000585EB7 /* ExtensionUIView.swift in Sources */,
+				9D87DA322C27677D0057EA83 /* CoreDataManager.swift in Sources */,
 				9D8C0DC32C242F5400585EB7 /* Utils.swift in Sources */,
 				9D8C0DA82C242ED200585EB7 /* MovieData.swift in Sources */,
 				9D55D22E2C220CCD000FEFAB /* AppDelegate.swift in Sources */,
@@ -596,6 +615,7 @@
 				9D9AF36C2C256EDC00C2A549 /* OptionsCell.swift in Sources */,
 				9D06B23A2C245466005CC698 /* DetailImageCell.swift in Sources */,
 				9D9AF3762C274FA600C2A549 /* MovieCell.swift in Sources */,
+				9D87DA2F2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld in Sources */,
 				9D55D2652C22205A000FEFAB /* AppConstant.swift in Sources */,
 				9D9AF3702C256EEE00C2A549 /* SuggestionsCell.swift in Sources */,
 				9D43F2702C2447C6009A4613 /* VideoData.swift in Sources */,
@@ -952,6 +972,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9D87DA2D2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9D87DA2E2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodel */,
+			);
+			currentVersion = 9D87DA2E2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodel */;
+			path = MoviesAppCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9D55D2222C220CCD000FEFAB /* Project object */;
 }

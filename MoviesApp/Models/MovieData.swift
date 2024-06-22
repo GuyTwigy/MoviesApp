@@ -21,22 +21,24 @@ struct MoviesRoot: Codable {
 
 struct MovieData: Codable {
     let id: Int?
+    let idString: String?
     let title: String?
     let posterPath: String?
     let overview: String?
     let releaseDate: String?
     let originalLanguage: String?
     let voteAverage: Double?
-    let video: Bool?
+    let date: Date?
     
     enum CodingKeys: String, CodingKey {
         case id
+        case idString
         case title
         case posterPath = "poster_path"
         case overview
         case releaseDate = "release_date"
         case originalLanguage = "original_language"
         case voteAverage = "vote_average"
-        case video
+        case date
     }
 }

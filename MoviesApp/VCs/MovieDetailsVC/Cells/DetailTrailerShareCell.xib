@@ -24,12 +24,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAc-sE-t8j">
-                        <rect key="frame" x="107" y="35.666666666666664" width="99" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CL5-ec-AzA">
                         <rect key="frame" x="107" y="16" width="120" height="60"/>
                         <color key="backgroundColor" systemColor="systemCyanColor"/>
@@ -66,10 +60,8 @@
                 <constraints>
                     <constraint firstItem="CL5-ec-AzA" firstAttribute="leading" secondItem="90e-3q-KPU" secondAttribute="trailing" constant="5" id="75Y-QU-wZa"/>
                     <constraint firstItem="OPG-EV-zwx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AH5-1m-u69"/>
-                    <constraint firstItem="aAc-sE-t8j" firstAttribute="leading" secondItem="90e-3q-KPU" secondAttribute="trailing" constant="5" id="JoZ-CG-sNU"/>
                     <constraint firstItem="90e-3q-KPU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="QRM-Q4-NdC"/>
                     <constraint firstItem="CL5-ec-AzA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="W1r-wf-a3v"/>
-                    <constraint firstItem="aAc-sE-t8j" firstAttribute="centerY" secondItem="90e-3q-KPU" secondAttribute="centerY" id="Xhc-4c-L7R"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OPG-EV-zwx" secondAttribute="trailing" constant="20" id="bWo-Gf-vqK"/>
                     <constraint firstItem="CL5-ec-AzA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eKT-45-Jee"/>
                     <constraint firstItem="90e-3q-KPU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lOf-JY-WUr"/>
@@ -78,7 +70,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="notAvailableLbl" destination="aAc-sE-t8j" id="kX0-bt-2EG"/>
                 <outlet property="showTrailerBtn" destination="CL5-ec-AzA" id="ews-Zl-OHX"/>
             </connections>
             <point key="canvasLocation" x="138.93129770992365" y="-60.563380281690144"/>
