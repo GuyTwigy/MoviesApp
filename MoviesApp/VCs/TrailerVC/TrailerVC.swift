@@ -10,26 +10,39 @@ import WebKit
 
 class TrailerVC: UIViewController {
     
-    var videoKey: String?
+    var vm: TrailerVM?
     
     @IBOutlet weak var containerView: UIView!
     private var webView: WKWebView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        webView = WKWebView(frame: view.frame)
-        view.addSubview(webView)
-        
-        if let videoKey = videoKey {
-            loadVideo(with: videoKey)
+    @IBOutlet weak var loader: UIActivityIndicatorView! {
+        didSet {
+            loader.startAnimating()
         }
     }
     
-    private func loadVideo(with key: String) {
-        let urlString = "https://www.youtube.com/embed/\(key)"
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            webView.load(request)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        vm?.delegate = self
+        vm?.loadVideo()
+        webView = WKWebView(frame: containerView.frame)
+        containerView.addSubview(webView)
+    }
+}
+
+extension TrailerVC: TrailerVMDelegate {
+    func showVideo(request: URLRequest?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            
+            if let request {
+                webView.load(request)
+            } else {
+                self.showAlert(title: "Fail To Present Trailer", message: "")
+            }
+            self.loader.stopAnimating()
         }
     }
 }

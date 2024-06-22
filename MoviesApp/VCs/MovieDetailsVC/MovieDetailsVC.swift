@@ -11,8 +11,8 @@ import SDWebImage
 class MovieDetailsVC: UIViewController {
 
     var vm: MovieDetailsVM?
-    var movie: MovieData?
-    var detailsArr: [MovieDetailsVM.SingleDetail] = []
+    private var movie: MovieData?
+    private var detailsArr: [MovieDetailsVM.SingleDetail] = []
     
     @IBOutlet weak var loader: UIActivityIndicatorView! {
         didSet {
@@ -82,7 +82,7 @@ extension MovieDetailsVC: MovieDetailsVMDelegate {
                 self.showAlert(title: "Fail to fetched trailer", message: error.localizedDescription)
             } else if let video {
                 let vc = TrailerVC()
-                vc.videoKey = video.key
+                vc.vm = TrailerVM(videoKey: video.key)
                 vc.modalPresentationStyle = .pageSheet
                 
                 if let sheet = vc.sheetPresentationController {

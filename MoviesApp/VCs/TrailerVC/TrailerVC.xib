@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrailerVC" customModule="MoviesApp" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="iWU-JQ-eMP" id="rFX-zS-tKJ"/>
+                <outlet property="loader" destination="Ddc-8J-d5T" id="c4R-Du-scT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,17 +22,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWU-JQ-eMP">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="10" width="393" height="808"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Ddc-8J-d5T">
+                    <rect key="frame" x="178" y="113" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Ddc-8J-d5T" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="AWV-SB-0Sx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iWU-JQ-eMP" secondAttribute="trailing" id="INh-CP-DeD"/>
+                <constraint firstItem="Ddc-8J-d5T" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.3" id="VOa-Do-BhF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iWU-JQ-eMP" secondAttribute="bottom" id="gLt-8V-s3P"/>
                 <constraint firstItem="iWU-JQ-eMP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jIW-eP-4DI"/>
-                <constraint firstItem="iWU-JQ-eMP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mFq-E4-ozD"/>
+                <constraint firstItem="iWU-JQ-eMP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="pBh-zt-UMS"/>
             </constraints>
             <point key="canvasLocation" x="47" y="21"/>
         </view>
