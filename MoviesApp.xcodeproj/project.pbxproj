@@ -84,15 +84,15 @@
 		9D43F26F2C2447C6009A4613 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		9D43F27E2C244821009A4613 /* TrailerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerVC.swift; sourceTree = "<group>"; };
 		9D43F27F2C244821009A4613 /* TrailerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerVC.xib; sourceTree = "<group>"; };
-		9D55D22A2C220CCD000FEFAB /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D55D22A2C220CCD000FEFAB /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MoviesApp.app; path = "/Users/guytwig/MoviesApp/build/Debug-iphoneos/MoviesApp.app"; sourceTree = "<absolute>"; };
 		9D55D22D2C220CCD000FEFAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D55D22F2C220CCD000FEFAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9D55D2362C220CCE000FEFAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D55D2392C220CCE000FEFAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D55D23B2C220CCE000FEFAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D55D2402C220CCF000FEFAB /* MoviesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D55D2402C220CCF000FEFAB /* MoviesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MoviesAppTests.xctest; path = "/Users/guytwig/MoviesApp/build/Debug-iphoneos/MoviesAppTests.xctest"; sourceTree = "<absolute>"; };
 		9D55D2442C220CCF000FEFAB /* MoviesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppTests.swift; sourceTree = "<group>"; };
-		9D55D24A2C220CCF000FEFAB /* MoviesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D55D24A2C220CCF000FEFAB /* MoviesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MoviesAppUITests.xctest; path = "/Users/guytwig/MoviesApp/build/Debug-iphoneos/MoviesAppUITests.xctest"; sourceTree = "<absolute>"; };
 		9D55D24E2C220CCF000FEFAB /* MoviesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITests.swift; sourceTree = "<group>"; };
 		9D55D2502C220CCF000FEFAB /* MoviesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9D55D2642C22205A000FEFAB /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
@@ -202,20 +202,9 @@
 				9D55D22C2C220CCD000FEFAB /* MoviesApp */,
 				9D55D2432C220CCF000FEFAB /* MoviesAppTests */,
 				9D55D24D2C220CCF000FEFAB /* MoviesAppUITests */,
-				9D55D22B2C220CCD000FEFAB /* Products */,
 				D87D40812BEC2C181673A7A1 /* Pods */,
 				967F68173EC96A1B45DCD80C /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		9D55D22B2C220CCD000FEFAB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9D55D22A2C220CCD000FEFAB /* MoviesApp.app */,
-				9D55D2402C220CCF000FEFAB /* MoviesAppTests.xctest */,
-				9D55D24A2C220CCF000FEFAB /* MoviesAppUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9D55D22C2C220CCD000FEFAB /* MoviesApp */ = {
@@ -427,7 +416,7 @@
 				Base,
 			);
 			mainGroup = 9D55D2212C220CCD000FEFAB;
-			productRefGroup = 9D55D22B2C220CCD000FEFAB /* Products */;
+			productRefGroup = 9D55D2212C220CCD000FEFAB;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
