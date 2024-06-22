@@ -39,6 +39,9 @@ class MovieDetailsVC: UIViewController {
         tblDetails.estimatedRowHeight = 200
     }
     
+    @IBAction func backTapped(_ sender: Any) {
+        backButtonPressed()
+    }
 }
 
 extension MovieDetailsVC: UITableViewDelegate, UITableViewDataSource {
@@ -84,7 +87,7 @@ extension MovieDetailsVC: MovieDetailsVMDelegate {
                 vc.modalPresentationStyle = .pageSheet
                 
                 if let sheet = vc.sheetPresentationController {
-                    sheet.detents = [.large()]
+                    sheet.detents = [.medium(), .large()]
                     sheet.prefersGrabberVisible = true
                 }
                 
