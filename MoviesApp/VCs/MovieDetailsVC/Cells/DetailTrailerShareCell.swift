@@ -18,16 +18,10 @@ class DetailTrailerShareCell: UITableViewCell {
 
     weak var delegate: DetailTrailerShareCellDelegate?
     
-    @IBOutlet weak var notAvailableLbl: UILabel!
     @IBOutlet weak var showTrailerBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    func setupCellContent(isVideo: Bool) {
-//        notAvailableLbl.isHidden = isVideo
-        showTrailerBtn.isHidden = false
     }
     
     @IBAction func showTrailerTapped(_ sender: Any) {

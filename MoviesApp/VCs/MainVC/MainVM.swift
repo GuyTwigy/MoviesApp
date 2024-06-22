@@ -28,8 +28,16 @@ class MainVM {
     
     func fetchSuggestion() async {
         do {
-            let movies = try await networkManager.fetchMultipleSuggestions(ids: ["1817", "745", "769", "429", "278"])
-            delegate?.suggestionFetched(movies: movies, error: nil)
+            let movies = try await networkManager.fetchMultipleSuggestions(ids: ["1817", "745", "769", "278", "429"])
+            var suggestedLocal = CoreDataManager.shared.fetchMovies(entityType: SuggestedMovies.self)
+            if suggestedLocal.isEmpty || Utils.isDataOlderThanOneDay(for: suggestedLocal.first?.date) {
+                CoreDataManager.shared.clearMovies(entityType: SuggestedMovies.self)
+                CoreDataManager.shared.addMovies(movies, entityType: SuggestedMovies.self)
+                suggestedLocal = CoreDataManager.shared.fetchMovies(entityType: SuggestedMovies.self)
+                delegate?.suggestionFetched(movies: suggestedLocal, error: nil)
+            } else {
+                delegate?.suggestionFetched(movies: movies, error: nil)
+            }
         } catch {
             print("Error: \(error.localizedDescription)")
             delegate?.suggestionFetched(movies: [], error: error)

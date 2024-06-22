@@ -63,7 +63,6 @@ extension MovieDetailsVC: UITableViewDelegate, UITableViewDataSource {
             cell = imageCell
         } else if detailsArr.count + 1 == indexPath.row {
             let trailerCell = tableView.dequeueReusableCell(withIdentifier: "DetailTrailerShareCell", for: indexPath) as! DetailTrailerShareCell
-            trailerCell.setupCellContent(isVideo: movie?.video ?? false)
             trailerCell.delegate = self
             cell = trailerCell
         }
@@ -120,7 +119,7 @@ extension MovieDetailsVC: MovieDetailsVMDelegate {
 extension MovieDetailsVC: DetailTrailerShareCellDelegate {
     func showTrailerTapped() {
         Task {
-            await vm?.getTrailer(id: movie?.id ?? 0)
+            await vm?.getTrailer(id: movie?.id ?? (Int(movie?.idString ?? "0")) ?? 0)
         }
     }
     

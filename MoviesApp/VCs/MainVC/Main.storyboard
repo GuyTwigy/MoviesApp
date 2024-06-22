@@ -74,7 +74,7 @@
                                 <cells/>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PmM-gU-CCZ">
-                                <rect key="frame" x="0.0" y="416" width="393" height="402"/>
+                                <rect key="frame" x="0.0" y="416" width="393" height="436"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfm-sa-wgT">
@@ -126,9 +126,9 @@
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1SA-nc-SFY" secondAttribute="trailing" id="16B-5K-6b9"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="PmM-gU-CCZ" secondAttribute="bottom" id="5cn-Hy-dus"/>
                             <constraint firstItem="wd1-nn-MGR" firstAttribute="top" secondItem="1SA-nc-SFY" secondAttribute="bottom" id="6Vu-Wh-O3F"/>
                             <constraint firstItem="Tfm-sa-wgT" firstAttribute="leading" secondItem="wd1-nn-MGR" secondAttribute="leading" id="7cU-m3-hHx"/>
+                            <constraint firstAttribute="bottom" secondItem="PmM-gU-CCZ" secondAttribute="bottom" id="Aeo-91-7LU"/>
                             <constraint firstItem="1SA-nc-SFY" firstAttribute="top" secondItem="anf-dI-hxH" secondAttribute="bottom" constant="8" id="Bfm-s7-TLK"/>
                             <constraint firstItem="RdS-Qf-5t8" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="Bht-6a-0MZ"/>
                             <constraint firstItem="wd1-nn-MGR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="D4u-eP-x4O"/>
