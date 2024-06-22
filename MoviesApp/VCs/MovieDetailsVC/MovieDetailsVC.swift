@@ -79,7 +79,7 @@ extension MovieDetailsVC: MovieDetailsVMDelegate {
             }
             
             if let error {
-                self.showAlert(title: "Data fail to fetched trailer", message: error.localizedDescription)
+                self.showAlert(title: "Fail to fetched trailer", message: error.localizedDescription)
             } else if let video {
                 let vc = TrailerVC()
                 vc.videoKey = video.key

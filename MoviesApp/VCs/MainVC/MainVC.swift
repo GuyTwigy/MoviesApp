@@ -15,6 +15,7 @@ class MainVC: UIViewController {
     private var optionsArr: [String] = ["Top", "Popular", "Trending", "Now Playing", "Upcoming"]
     private var suggestedMovies: [MovieData] = []
     private var optionSelected: OptionsSelection = .top
+    private var isLocalFetch: Bool = false
     
     @IBOutlet weak var loader: UIActivityIndicatorView! {
         didSet {
@@ -130,7 +131,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if (moviesData?.results?.count ?? 0) - 5 <= indexPath.row && moviesData?.page ?? 10 < moviesData?.totalPages ?? 100 {
+        if (moviesData?.results?.count ?? 0) - 5 <= indexPath.row && moviesData?.page ?? 10 < moviesData?.totalPages ?? 100, !isLocalFetch {
             Task {
                 await vm?.fetchMovies(optionSelection: optionSelected, query: searchTextField.text ?? "", page: (moviesData?.page ?? 0) + 1)
             }
@@ -227,7 +228,7 @@ extension MainVC: MainVMDelagate {
         }
     }
     
-    func moviesFetched(moviesData: MoviesRoot?, addContent: Bool, error: Error?) {
+    func moviesFetched(moviesData: MoviesRoot?, addContent: Bool, localFetch: Bool, error: Error?) {
         DispatchQueue.main.async { [weak self] in
             guard let self else {
                 return
@@ -255,6 +256,7 @@ extension MainVC: MainVMDelagate {
                 self.movies = moviesData?.results ?? []
                 tblMovies.reloadData()
             }
+            self.isLocalFetch = localFetch
             self.emptyIndicationLbl.isHidden = !self.movies.isEmpty
             loader.stopAnimating()
         }

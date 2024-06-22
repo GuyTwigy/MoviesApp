@@ -10,18 +10,6 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    static let sharedInstance: AppDelegate = {
-        if Thread.isMainThread {
-            return UIApplication.shared.delegate as! AppDelegate
-        } else {
-            var delegate: AppDelegate?
-            DispatchQueue.main.sync {
-                delegate = UIApplication.shared.delegate as? AppDelegate
-            }
-            return delegate!
-        }
-    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
