@@ -1,5 +1,5 @@
 //
-//  MockCoreDAtaManager.swift
+//  MockCoreDataManager.swift
 //  MoviesApp
 //
 //  Created by Guy Twig on 23/06/2024.
@@ -13,38 +13,37 @@ class MockCoreDataManager: CoreDataManagerProtocol {
     static let shared = MockCoreDataManager()
     
     private init() {}
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "MoviesAppCoreData")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        container.persistentStoreDescriptions = [description]
         
-        lazy var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "MoviesAppCoreData")
-            let description = NSPersistentStoreDescription()
-            description.type = NSInMemoryStoreType // Use in-memory store for testing
-            container.persistentStoreDescriptions = [description]
-            
-            container.loadPersistentStores { description, error in
-                if let error = error as NSError? {
-                    fatalError("Failed to load Core Data stack: \(error), \(error.userInfo)")
-                }
+        container.loadPersistentStores { description, error in
+            if let error = error as NSError? {
+                fatalError("Failed to load Core Data stack: \(error), \(error.userInfo)")
             }
-            
-            return container
-        }()
+        }
+        
+        return container
+    }()
     
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
-    func saveContext() {
+    func saveContext() async throws {
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                throw error
             }
         }
     }
     
-    func fetchMovies<T: NSManagedObject>(entityType: T.Type) -> [MovieData] {
+    func fetchMovies<T: NSManagedObject>(entityType: T.Type) async throws -> [MovieData] {
         let request = NSFetchRequest<T>(entityName: String(describing: entityType))
         do {
             let results = try context.fetch(request)
@@ -68,32 +67,36 @@ class MockCoreDataManager: CoreDataManagerProtocol {
             return movieDataArray
         } catch {
             print("Failed to fetch movies: \(error)")
-            return []
+            throw error
         }
     }
     
-    func addMovies<T: NSManagedObject>(_ movies: [MovieData], entityType: T.Type) {
-        clearMovies(entityType: entityType)
-        for movieData in movies {
-            let entityName = String(describing: entityType)
-            guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
-                continue
+    func addMovies<T: NSManagedObject>(_ movies: [MovieData], entityType: T.Type) async throws {
+        do {
+            try await clearMovies(entityType: entityType)
+            for movieData in movies {
+                let entityName = String(describing: entityType)
+                guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
+                    continue
+                }
+                
+                let movie = NSManagedObject(entity: entity, insertInto: context)
+                movie.setValue("\(movieData.id ?? 0)", forKey: "idString")
+                movie.setValue(movieData.title, forKey: "title")
+                movie.setValue(movieData.posterPath, forKey: "posterPath")
+                movie.setValue(movieData.overview, forKey: "overview")
+                movie.setValue(movieData.releaseDate, forKey: "releaseDate")
+                movie.setValue(movieData.originalLanguage, forKey: "originalLanguage")
+                movie.setValue((movieData.voteAverage), forKey: "voteAverage")
+                movie.setValue(Date(), forKey: "date")
             }
-            
-            let movie = NSManagedObject(entity: entity, insertInto: context)
-            movie.setValue("\(movieData.id ?? 0)", forKey: "idString")
-            movie.setValue(movieData.title, forKey: "title")
-            movie.setValue(movieData.posterPath, forKey: "posterPath")
-            movie.setValue(movieData.overview, forKey: "overview")
-            movie.setValue(movieData.releaseDate, forKey: "releaseDate")
-            movie.setValue(movieData.originalLanguage, forKey: "originalLanguage")
-            movie.setValue((movieData.voteAverage), forKey: "voteAverage")
-            movie.setValue(Date(), forKey: "date")
+            try await saveContext()
+        } catch {
+            throw error
         }
-        saveContext()
     }
     
-    func clearMovies<T: NSManagedObject>(entityType: T.Type) {
+    func clearMovies<T: NSManagedObject>(entityType: T.Type) async throws {
         let entityName = String(describing: entityType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
@@ -102,7 +105,7 @@ class MockCoreDataManager: CoreDataManagerProtocol {
             for object in objects {
                 context.delete(object)
             }
-            saveContext()
+            try await saveContext()
         } catch {
             print("Failed to clear movies: \(error)")
         }
