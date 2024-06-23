@@ -22,7 +22,7 @@
                         <rect key="frame" x="10" y="10" width="312" height="175"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7tH-Sf-ufg">
-                                <rect key="frame" x="10" y="10" width="155" height="155"/>
+                                <rect key="frame" x="20" y="10" width="155" height="155"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7tH-Sf-ufg" secondAttribute="height" multiplier="1:1" id="7ui-Wh-aRR"/>
                                 </constraints>
@@ -33,22 +33,22 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlY-7D-yKR">
-                                <rect key="frame" x="175" y="75.666666666666671" width="137" height="24"/>
+                                <rect key="frame" x="195" y="75.666666666666671" width="109" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="VBC-8e-329">
-                                <rect key="frame" x="77.666666666666671" y="77.666666666666671" width="20" height="20"/>
+                                <rect key="frame" x="87.666666666666671" y="77.666666666666671" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7tH-Sf-ufg" firstAttribute="top" secondItem="P8F-Nh-ylw" secondAttribute="top" constant="10" id="22T-E4-iL3"/>
-                            <constraint firstItem="7tH-Sf-ufg" firstAttribute="leading" secondItem="P8F-Nh-ylw" secondAttribute="leading" constant="10" id="3FA-oQ-6SY"/>
-                            <constraint firstItem="mlY-7D-yKR" firstAttribute="leading" secondItem="7tH-Sf-ufg" secondAttribute="trailing" constant="10" id="NuU-iK-nqi"/>
+                            <constraint firstItem="7tH-Sf-ufg" firstAttribute="leading" secondItem="P8F-Nh-ylw" secondAttribute="leading" constant="20" id="3FA-oQ-6SY"/>
+                            <constraint firstItem="mlY-7D-yKR" firstAttribute="leading" secondItem="7tH-Sf-ufg" secondAttribute="trailing" constant="20" id="NuU-iK-nqi"/>
                             <constraint firstAttribute="bottom" secondItem="7tH-Sf-ufg" secondAttribute="bottom" constant="10" id="VcN-rO-tZh"/>
-                            <constraint firstAttribute="trailing" secondItem="mlY-7D-yKR" secondAttribute="trailing" id="dn9-DH-dvh"/>
+                            <constraint firstAttribute="trailing" secondItem="mlY-7D-yKR" secondAttribute="trailing" constant="8" id="dn9-DH-dvh"/>
                             <constraint firstItem="mlY-7D-yKR" firstAttribute="centerY" secondItem="7tH-Sf-ufg" secondAttribute="centerY" id="h8K-Hb-4FP"/>
                             <constraint firstItem="VBC-8e-329" firstAttribute="centerY" secondItem="7tH-Sf-ufg" secondAttribute="centerY" id="iOh-v4-wfE"/>
                             <constraint firstItem="VBC-8e-329" firstAttribute="centerX" secondItem="7tH-Sf-ufg" secondAttribute="centerX" id="ihB-Zq-5bW"/>
@@ -97,7 +97,7 @@
     </objects>
     <resources>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
