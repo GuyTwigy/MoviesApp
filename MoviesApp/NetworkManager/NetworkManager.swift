@@ -141,11 +141,11 @@ extension NetworkManager: FetchMoviesProtocol {
     }
 }
 
-protocol GetTrailer {
+protocol GetTrailerProtocol {
     func getTrailer(id: String) async throws -> [VideoData]
 }
 
-extension NetworkManager: GetTrailer {
+extension NetworkManager: GetTrailerProtocol {
     
     func getTrailer(id: String) async throws -> [VideoData] {
         var components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)\(AppConstant.EndPoints.video.description)")

@@ -16,6 +16,7 @@ class MainVC: UIViewController {
     private var suggestedMovies: [MovieData] = []
     private var optionSelected: OptionsSelection = .top
     private var isLocalFetch: Bool = false
+    private let networkManager = NetworkManager()
     
     @IBOutlet weak var loader: UIActivityIndicatorView! {
         didSet {
@@ -40,7 +41,6 @@ class MainVC: UIViewController {
         hideKeyboardWhenTappedAround(cancelTouches: false)
         setupCollectionViewsAndTableView()
         setupTextField()
-        let networkManager = NetworkManager()
         vm = MainVM(dataService: networkManager)
         vm?.delegate = self
         Task {
@@ -127,7 +127,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieDetailsVC()
-        vc.vm = MovieDetailsVM(movie: movies[indexPath.row])
+        vc.vm = MovieDetailsVM(dataService: networkManager, movie: movies[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -186,7 +186,7 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             optionTapped()
         } else {
             let vc = MovieDetailsVC()
-            vc.vm = MovieDetailsVM(movie: suggestedMovies[indexPath.row])
+            vc.vm = MovieDetailsVM(dataService: networkManager, movie: suggestedMovies[indexPath.row])
             navigationController?.pushViewController(vc, animated: true)
         }
     }

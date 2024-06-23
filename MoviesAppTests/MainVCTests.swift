@@ -6,28 +6,23 @@
 //
 
 import XCTest
-import CoreData
 @testable import MoviesApp
 
 final class MainVCTests: XCTestCase {
-
+    
     var vm: MainVM?
     var dataService: FetchMoviesProtocol?
-    var coreDataManager: CoreDataManagerProtocol!
-    let mockMovies = MoviesRoot(results: [MovieData(id: 1, idString: "1", title: "Mock Movie", posterPath: "/mock", overview: "Overview", releaseDate: "2023-01-01", originalLanguage: "en", voteAverage: 8.0, date: Date()), MovieData(id: 2, idString: "2", title: "Mock Movie2", posterPath: "/mock2", overview: "Overview2", releaseDate: "2023-01-02", originalLanguage: "en", voteAverage: 7.0, date: Date())], page: 1, totalPages: 1)
     
     override func setUpWithError() throws {
-        coreDataManager = MockCoreDataManager.shared
         dataService = NetworkManager()
         if let dataService {
             vm = MainVM(dataService: dataService)
         }
     }
-
+    
     override func tearDownWithError() throws {
         vm = nil
         dataService = nil
-        coreDataManager = nil
     }
     
     func test_MainVM_FetchTopMoviesSuccess() async {
@@ -52,7 +47,7 @@ final class MainVCTests: XCTestCase {
                 XCTFail()
             }
         }
-    
+        
         await fulfillment(of: [expectation], timeout: 10.0, enforceOrder: true)
     }
     
@@ -78,7 +73,7 @@ final class MainVCTests: XCTestCase {
                 XCTFail()
             }
         }
-    
+        
         await fulfillment(of: [expectation], timeout: 10.0, enforceOrder: true)
     }
     
@@ -87,7 +82,7 @@ final class MainVCTests: XCTestCase {
         let optionSelection: OptionsSelection = .upcoming
         let query = ""
         let page = 1
-       
+        
         // When
         let expectation = self.expectation(description: "Fetch top movies")
         Task {
@@ -104,7 +99,7 @@ final class MainVCTests: XCTestCase {
                 XCTFail()
             }
         }
-    
+        
         await fulfillment(of: [expectation], timeout: 10.0, enforceOrder: true)
     }
     
@@ -130,7 +125,7 @@ final class MainVCTests: XCTestCase {
                 XCTFail()
             }
         }
-    
+        
         await fulfillment(of: [expectation], timeout: 10.0, enforceOrder: true)
     }
     
@@ -156,18 +151,13 @@ final class MainVCTests: XCTestCase {
                 XCTFail()
             }
         }
-    
+        
         await fulfillment(of: [expectation], timeout: 10.0, enforceOrder: true)
     }
     
     func test_MainVM_FetchSuggestionsSuccess() async {
-        // Given
-        let mockMovies = [MovieData(id: 1, idString: "1", title: "Mock Movie", posterPath: "/mock", overview: "Overview", releaseDate: "2023-01-01", originalLanguage: "en", voteAverage: 8.0, date: Date())]
-        
-        
+        //when
         let expectation = self.expectation(description: "Fetch suggestions")
-        
-        // When
         Task {
             do {
                 let movies = try await dataService?.fetchMultipleSuggestions(ids: ["1817", "745", "769", "278", "429"])
