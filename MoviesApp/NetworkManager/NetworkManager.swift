@@ -7,16 +7,20 @@
 
 import Foundation
 
+
+class NetworkManager {
+
+    let baseUrl = "https://api.themoviedb.org/3"
+    let apiKey = "ab0f464004f9fe46240dab71b2b89a08"
+    
+}
+
 protocol FetchMoviesProtocol {
     func fetchMovies(optionSelected: OptionsSelection, query: String, page: Int) async throws -> MoviesRoot
     func fetchMultipleSuggestions(ids: [String]) async throws -> [MovieData]
 }
 
-class NetworkManager: FetchMoviesProtocol {
-    
-    var baseUrl = "https://api.themoviedb.org/3"
-    let apiKey = "ab0f464004f9fe46240dab71b2b89a08"
-    
+extension NetworkManager: FetchMoviesProtocol {
     func fetchMovies(optionSelected: OptionsSelection, query: String = "", page: Int = 1) async throws -> MoviesRoot {
         var components = URLComponents()
         switch optionSelected {
@@ -70,7 +74,11 @@ class NetworkManager: FetchMoviesProtocol {
         }
         
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw URLError(.badServerResponse)
             }
@@ -92,7 +100,10 @@ class NetworkManager: FetchMoviesProtocol {
         }
         
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw URLError(.badServerResponse)
             }
@@ -148,7 +159,10 @@ extension NetworkManager: GetTrailer {
         }
         
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw URLError(.badServerResponse)
             }
