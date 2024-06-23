@@ -1,34 +1,33 @@
 //
-//  CoreDataManager.swift
+//  MockCoreDAtaManager.swift
 //  MoviesApp
 //
-//  Created by Guy Twig on 22/06/2024.
+//  Created by Guy Twig on 23/06/2024.
 //
 
+import Foundation
 import CoreData
-import UIKit
 
-protocol CoreDataManagerProtocol {
-    func fetchMovies<T: NSManagedObject>(entityType: T.Type) -> [MovieData]
-    func addMovies<T: NSManagedObject>(_ movies: [MovieData], entityType: T.Type)
-    func clearMovies<T: NSManagedObject>(entityType: T.Type)
-}
-
-class CoreDataManager: CoreDataManagerProtocol {
+class MockCoreDataManager: CoreDataManagerProtocol {
     
-    static let shared = CoreDataManager()
+    static let shared = MockCoreDataManager()
     
     private init() {}
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MoviesAppCoreData")
-        container.loadPersistentStores { description, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+        
+        lazy var persistentContainer: NSPersistentContainer = {
+            let container = NSPersistentContainer(name: "MoviesAppCoreData")
+            let description = NSPersistentStoreDescription()
+            description.type = NSInMemoryStoreType // Use in-memory store for testing
+            container.persistentStoreDescriptions = [description]
+            
+            container.loadPersistentStores { description, error in
+                if let error = error as NSError? {
+                    fatalError("Failed to load Core Data stack: \(error), \(error.userInfo)")
+                }
             }
-        }
-        return container
-    }()
+            
+            return container
+        }()
     
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -77,7 +76,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         clearMovies(entityType: entityType)
         for movieData in movies {
             let entityName = String(describing: entityType)
-            guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { 
+            guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
                 continue
             }
             
