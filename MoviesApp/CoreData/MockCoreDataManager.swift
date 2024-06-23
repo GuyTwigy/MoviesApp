@@ -1,32 +1,31 @@
 //
-//  CoreDataManager.swift
+//  MockCoreDataManager.swift
 //  MoviesApp
 //
-//  Created by Guy Twig on 22/06/2024.
+//  Created by Guy Twig on 23/06/2024.
 //
 
+import Foundation
 import CoreData
-import UIKit
 
-protocol CoreDataManagerProtocol {
-    func fetchMovies<T: NSManagedObject>(entityType: T.Type) async throws -> [MovieData]
-    func addMovies<T: NSManagedObject>(_ movies: [MovieData], entityType: T.Type) async throws
-    func clearMovies<T: NSManagedObject>(entityType: T.Type) async throws
-}
-
-class CoreDataManager: CoreDataManagerProtocol {
+class MockCoreDataManager: CoreDataManagerProtocol {
     
-    static let shared = CoreDataManager()
+    static let shared = MockCoreDataManager()
     
     private init() {}
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "MoviesAppCoreData")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        container.persistentStoreDescriptions = [description]
+        
         container.loadPersistentStores { description, error in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Failed to load Core Data stack: \(error), \(error.userInfo)")
             }
         }
+        
         return container
     }()
     

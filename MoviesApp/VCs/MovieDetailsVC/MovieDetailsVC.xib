@@ -38,7 +38,7 @@
                     <color key="color" systemColor="labelColor"/>
                 </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY1-sh-DPQ">
-                    <rect key="frame" x="20" y="59" width="50" height="50"/>
+                    <rect key="frame" x="5" y="59" width="50" height="50"/>
                     <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="q0m-Km-mch"/>
@@ -63,7 +63,7 @@
                 <constraint firstItem="emt-lQ-BQb" firstAttribute="top" secondItem="jY1-sh-DPQ" secondAttribute="bottom" id="AHg-Q0-aUp"/>
                 <constraint firstItem="jY1-sh-DPQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="GhL-oD-VG8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCF-y0-hlB" secondAttribute="trailing" id="MsG-8O-yH7"/>
-                <constraint firstItem="jY1-sh-DPQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NPO-71-S2W"/>
+                <constraint firstItem="jY1-sh-DPQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="NPO-71-S2W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="emt-lQ-BQb" secondAttribute="trailing" constant="10" id="RPR-B2-UUc"/>
                 <constraint firstAttribute="bottom" secondItem="hCF-y0-hlB" secondAttribute="bottom" id="Sve-yo-xVr"/>
                 <constraint firstItem="emt-lQ-BQb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="e73-dO-1W8"/>
@@ -79,7 +79,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

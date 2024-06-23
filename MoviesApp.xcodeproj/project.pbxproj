@@ -17,6 +17,11 @@
 		9D06B23C2C245466005CC698 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D06B2332C245466005CC698 /* DetailCell.xib */; };
 		9D06B23D2C245466005CC698 /* DetailTrailerShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D06B2342C245466005CC698 /* DetailTrailerShareCell.swift */; };
 		9D06B23E2C245466005CC698 /* DetailImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D06B2352C245466005CC698 /* DetailImageCell.xib */; };
+		9D1CBEAA2C281A61007709DD /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEA92C281A61007709DD /* MockCoreDataManager.swift */; };
+		9D1CBEAE2C287736007709DD /* MainVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEAD2C287735007709DD /* MainVCTests.swift */; };
+		9D1CBEB02C28A7FF007709DD /* MovieDetailsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEAF2C28A7FF007709DD /* MovieDetailsVMTests.swift */; };
+		9D1CBEB22C28B344007709DD /* TrailerVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEB12C28B344007709DD /* TrailerVMTests.swift */; };
+		9D1F47682C27FC38007A4EB4 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F47672C27FC38007A4EB4 /* CoreDataManagerTests.swift */; };
 		9D43F2702C2447C6009A4613 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D43F26F2C2447C6009A4613 /* VideoData.swift */; };
 		9D43F2802C244821009A4613 /* TrailerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D43F27E2C244821009A4613 /* TrailerVC.swift */; };
 		9D43F2812C244821009A4613 /* TrailerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D43F27F2C244821009A4613 /* TrailerVC.xib */; };
@@ -85,6 +90,11 @@
 		9D06B2332C245466005CC698 /* DetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		9D06B2342C245466005CC698 /* DetailTrailerShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTrailerShareCell.swift; sourceTree = "<group>"; };
 		9D06B2352C245466005CC698 /* DetailImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailImageCell.xib; sourceTree = "<group>"; };
+		9D1CBEA92C281A61007709DD /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
+		9D1CBEAD2C287735007709DD /* MainVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTests.swift; sourceTree = "<group>"; };
+		9D1CBEAF2C28A7FF007709DD /* MovieDetailsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVMTests.swift; sourceTree = "<group>"; };
+		9D1CBEB12C28B344007709DD /* TrailerVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerVMTests.swift; sourceTree = "<group>"; };
+		9D1F47672C27FC38007A4EB4 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		9D43F26F2C2447C6009A4613 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		9D43F27E2C244821009A4613 /* TrailerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerVC.swift; sourceTree = "<group>"; };
 		9D43F27F2C244821009A4613 /* TrailerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerVC.xib; sourceTree = "<group>"; };
@@ -252,6 +262,10 @@
 			isa = PBXGroup;
 			children = (
 				9D55D2442C220CCF000FEFAB /* MoviesAppTests.swift */,
+				9D1F47672C27FC38007A4EB4 /* CoreDataManagerTests.swift */,
+				9D1CBEAD2C287735007709DD /* MainVCTests.swift */,
+				9D1CBEAF2C28A7FF007709DD /* MovieDetailsVMTests.swift */,
+				9D1CBEB12C28B344007709DD /* TrailerVMTests.swift */,
 			);
 			path = MoviesAppTests;
 			sourceTree = "<group>";
@@ -316,6 +330,7 @@
 			children = (
 				9D87DA2D2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld */,
 				9D87DA312C27677D0057EA83 /* CoreDataManager.swift */,
+				9D1CBEA92C281A61007709DD /* MockCoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -615,6 +630,7 @@
 				9D8C0DA82C242ED200585EB7 /* MovieData.swift in Sources */,
 				9D55D22E2C220CCD000FEFAB /* AppDelegate.swift in Sources */,
 				9D8C0DA42C242D9C00585EB7 /* MainVC.swift in Sources */,
+				9D1CBEAA2C281A61007709DD /* MockCoreDataManager.swift in Sources */,
 				9D9AF36C2C256EDC00C2A549 /* OptionsCell.swift in Sources */,
 				9D06B23A2C245466005CC698 /* DetailImageCell.swift in Sources */,
 				9D9AF3762C274FA600C2A549 /* MovieCell.swift in Sources */,
@@ -633,7 +649,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1CBEB02C28A7FF007709DD /* MovieDetailsVMTests.swift in Sources */,
+				9D1CBEB22C28B344007709DD /* TrailerVMTests.swift in Sources */,
+				9D1F47682C27FC38007A4EB4 /* CoreDataManagerTests.swift in Sources */,
 				9D55D2452C220CCF000FEFAB /* MoviesAppTests.swift in Sources */,
+				9D1CBEAE2C287736007709DD /* MainVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +883,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5NDZSNAZM;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
@@ -884,6 +906,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5NDZSNAZM;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
@@ -904,6 +928,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5NDZSNAZM;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
@@ -924,6 +950,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5NDZSNAZM;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;

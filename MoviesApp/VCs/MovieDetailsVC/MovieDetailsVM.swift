@@ -22,9 +22,10 @@ class MovieDetailsVM {
     private var movie: MovieData?
     private var detailsArr: [SingleDetail] = []
     weak var delegate: MovieDetailsVMDelegate?
-    private var networkManager = NetworkManager()
+    var dataService: GetTrailerProtocol
     
-    init(movie: MovieData) {
+    init(dataService: GetTrailerProtocol, movie: MovieData) {
+        self.dataService = dataService
         self.movie = movie
     }
     
@@ -43,7 +44,7 @@ class MovieDetailsVM {
     
     func getTrailer(id: Int) async {
         do {
-            let videoData = try await networkManager.getTrailer(id: String(id))
+            let videoData = try await dataService.getTrailer(id: String(id))
             delegate?.videoFetched(video: videoData.first, error: nil)
         } catch {
             print("Error: \(error.localizedDescription)")
