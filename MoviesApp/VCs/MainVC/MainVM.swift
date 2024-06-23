@@ -14,12 +14,17 @@ protocol MainVMDelagate: AnyObject {
 }
 
 class MainVM {
+    
     weak var delegate: MainVMDelagate?
-    private var networkManager = NetworkManager()
+    var dataService: FetchMoviesProtocol
+    
+    init(dataService: FetchMoviesProtocol) {
+        self.dataService = dataService
+    }
     
     func fetchMovies(optionSelection: OptionsSelection, query: String, page: Int) async {
         do {
-            let moviesData = try await networkManager.fetchMovies(optionSelected: optionSelection, query: query, page: page)
+            let moviesData = try await dataService.fetchMovies(optionSelected: optionSelection, query: query, page: page)
             switch optionSelection {
             case .top:
                 await moviesByOptions(moviesRoot: moviesData, page: page, type: TopMovies.self)
@@ -55,7 +60,7 @@ class MainVM {
     
     func fetchSuggestion() async {
         do {
-            let movies = try await networkManager.fetchMultipleSuggestions(ids: ["1817", "745", "769", "278", "429"])
+            let movies = try await dataService.fetchMultipleSuggestions(ids: ["1817", "745", "769", "278", "429"])
             var suggestedLocal = try await CoreDataManager.shared.fetchMovies(entityType: SuggestedMovies.self)
             if suggestedLocal.isEmpty || Utils.isDataOlderThanOneDay(for: suggestedLocal.first?.date) {
                 try await CoreDataManager.shared.clearMovies(entityType: SuggestedMovies.self)

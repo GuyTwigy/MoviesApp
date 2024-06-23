@@ -40,7 +40,8 @@ class MainVC: UIViewController {
         hideKeyboardWhenTappedAround(cancelTouches: false)
         setupCollectionViewsAndTableView()
         setupTextField()
-        vm = MainVM()
+        let networkManager = NetworkManager()
+        vm = MainVM(dataService: networkManager)
         vm?.delegate = self
         Task {
             await vm?.fetchMovies(optionSelection: .top, query: "", page: 1)
