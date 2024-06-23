@@ -17,6 +17,7 @@ class MainVM {
     
     weak var delegate: MainVMDelagate?
     var dataService: FetchMoviesProtocol
+    private var movies: [MovieData] = []
     
     init(dataService: FetchMoviesProtocol) {
         self.dataService = dataService
