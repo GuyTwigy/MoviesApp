@@ -21,6 +21,53 @@ protocol FetchMoviesProtocol {
 }
 
 extension NetworkManager: FetchMoviesProtocol {
+    func fetchSingleSuggestion(id: String) async throws -> MovieData {
+        let url = URL(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)?api_key=\(apiKey)")
+        guard let url else {
+            throw URLError(.badURL)
+        }
+        
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw URLError(.badServerResponse)
+            }
+            guard (200...299).contains(httpResponse.statusCode) else {
+                throw URLError(.badServerResponse)
+            }
+            
+            let movie = try JSONDecoder().decode(MovieData.self, from: data)
+            return movie
+        } catch {
+            throw error
+        }
+    }
+    
+    func fetchMultipleSuggestions(ids: [String]) async throws -> [MovieData] {
+        try await withThrowingTaskGroup(of: MovieData.self) { group in
+            var movies: [MovieData] = []
+            
+            for id in ids {
+                group.addTask { [weak self] in
+                    guard let self else {
+                        throw URLError(.badServerResponse)
+                    }
+                    
+                    return try await self.fetchSingleSuggestion(id: id)
+                }
+            }
+            
+            for try await movie in group {
+                movies.append(movie)
+            }
+            
+            return movies
+        }
+    }
+    
     func fetchMovies(optionSelected: OptionsSelection, query: String = "", page: Int = 1) async throws -> MoviesRoot {
         var components = URLComponents()
         switch optionSelected {
@@ -92,53 +139,6 @@ extension NetworkManager: FetchMoviesProtocol {
             throw error
         }
     }
-    
-    func fetchSingleSuggestion(id: String) async throws -> MovieData {
-        let url = URL(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)?api_key=\(apiKey)")
-        guard let url else {
-            throw URLError(.badURL)
-        }
-        
-        do {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
-            let (data, response) = try await URLSession.shared.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw URLError(.badServerResponse)
-            }
-            guard (200...299).contains(httpResponse.statusCode) else {
-                throw URLError(.badServerResponse)
-            }
-            
-            let movie = try JSONDecoder().decode(MovieData.self, from: data)
-            return movie
-        } catch {
-            throw error
-        }
-    }
-    
-    func fetchMultipleSuggestions(ids: [String]) async throws -> [MovieData] {
-        try await withThrowingTaskGroup(of: MovieData.self) { group in
-            var movies: [MovieData] = []
-            
-            for id in ids {
-                group.addTask { [weak self] in
-                    guard let self else {
-                        throw URLError(.badServerResponse)
-                    }
-                    
-                    return try await self.fetchSingleSuggestion(id: id)
-                }
-            }
-            
-            for try await movie in group {
-                movies.append(movie)
-            }
-            
-            return movies
-        }
-    }
 }
 
 protocol GetTrailerProtocol {
@@ -146,7 +146,6 @@ protocol GetTrailerProtocol {
 }
 
 extension NetworkManager: GetTrailerProtocol {
-    
     func getTrailer(id: String) async throws -> [VideoData] {
         var components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)/\(id)\(AppConstant.EndPoints.video.description)")
         
