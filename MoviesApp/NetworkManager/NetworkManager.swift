@@ -123,7 +123,13 @@ extension NetworkManager: FetchMoviesProtocol {
         do {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            if page > 1 {
+                request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+                request.cachePolicy = .reloadIgnoringLocalCacheData
+            } else {
+                request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+                request.cachePolicy = .useProtocolCachePolicy
+            }
             
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else {
