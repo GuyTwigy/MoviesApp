@@ -63,35 +63,15 @@ class MainVM {
             let moviesData = try await dataService.fetchMovies(optionSelected: optionSelection, query: query, page: page)
             switch optionSelection {
             case .top:
-                if MovieAppManager.sharedInstance.localTopMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateTopMoviesAdded) {
-                    await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: TopMovies.self)
-                } else {
-                    delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
-                }
+                MovieAppManager.sharedInstance.localTopMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateTopMoviesAdded) ? await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: TopMovies.self) : delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             case .popular:
-                if MovieAppManager.sharedInstance.localPopularMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.datePopularMoviesAdded) {
-                    await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: PopularMovies.self)
-                } else {
-                    delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
-                }
+                MovieAppManager.sharedInstance.localPopularMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.datePopularMoviesAdded) ? await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: PopularMovies.self) : delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             case .trending:
-                if MovieAppManager.sharedInstance.localTrendingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateTrendingMoviesAdded) {
-                    await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: TrendingMovies.self)
-                } else {
-                    delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
-                }
+                MovieAppManager.sharedInstance.localTrendingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateTrendingMoviesAdded) ? await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: TrendingMovies.self) : delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             case .nowPlaying:
-                if MovieAppManager.sharedInstance.localNowPlayingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateNowPlayingMoviesAdded) {
-                    await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: NowPlayingMovies.self)
-                } else {
-                    delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
-                }
+                MovieAppManager.sharedInstance.localNowPlayingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateNowPlayingMoviesAdded) ? await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: NowPlayingMovies.self) : delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             case .upcoming:
-                if MovieAppManager.sharedInstance.localUpcomingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateUpcomingMoviesAdded) {
-                    await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: UpcomingMovies.self)
-                } else {
-                    delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
-                }
+                MovieAppManager.sharedInstance.localUpcomingMoviesIsEmpty || Utils.isDataOlderThanOneDay(for: MovieAppManager.sharedInstance.dateUpcomingMoviesAdded) ? await moviesByOptions(optionSelection: optionSelection, moviesRoot: moviesData, page: page, type: UpcomingMovies.self) : delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             case .search:
                 delegate?.moviesFetched(moviesData: moviesData, addContent: page > 1, localFetch: false, error: nil)
             }

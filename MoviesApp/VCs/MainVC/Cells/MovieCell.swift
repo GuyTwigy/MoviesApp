@@ -34,8 +34,13 @@ class MovieCell: UITableViewCell {
         loader.startAnimating()
         titleLbl.text = movie.title
         if let imaggeUrl = Utils.getImageUrl(posterPath: movie.posterPath ?? "") {
-            thumbnailImage.sd_setImage(with: imaggeUrl, placeholderImage: UIImage(named: "noImagePlaceholder"))
-            loader.stopAnimating()
+            thumbnailImage.sd_setImage(with: imaggeUrl, placeholderImage: UIImage(named: "noImagePlaceholder")) { [weak self] _,_,_,_ in
+                guard let self else {
+                    return
+                }
+                
+                loader.stopAnimating()
+            }
         }
     }
 }

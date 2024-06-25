@@ -70,48 +70,30 @@ extension NetworkManager: FetchMoviesProtocol {
     
     func fetchMovies(optionSelected: OptionsSelection, query: String = "", page: Int = 1) async throws -> MoviesRoot {
         var components = URLComponents()
+
         switch optionSelected {
         case .top:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.topRated.description)") ?? URLComponents()
-            
-            components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page)),
-            ]
         case .popular:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.popular.description)") ?? URLComponents()
-            
-            components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page)),
-            ]
         case .trending:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.trending.description)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.week.description)") ?? URLComponents()
-            
-            components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page)),
-            ]
         case .nowPlaying:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.nowPlaying.description)") ?? URLComponents()
-            
-            components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page)),
-            ]
         case .upcoming:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.movie.description)\(AppConstant.EndPoints.upcoming.description)") ?? URLComponents()
-            
-            components.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page)),
-            ]
         case .search:
             components = URLComponents(string: "\(baseUrl)\(AppConstant.EndPoints.search.description)\(AppConstant.EndPoints.movie.description)") ?? URLComponents()
-            
             components.queryItems = [
                 URLQueryItem(name: "api_key", value: apiKey),
                 URLQueryItem(name: "query", value: query),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        }
+        
+        if optionSelected != .search {
+            components.queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey),
                 URLQueryItem(name: "page", value: String(page)),
             ]
         }
@@ -120,29 +102,36 @@ extension NetworkManager: FetchMoviesProtocol {
             throw URLError(.badURL)
         }
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        configureCachePolicy(request: &request, page: page)
+        
         do {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            if page > 1 {
-                request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
-                request.cachePolicy = .reloadIgnoringLocalCacheData
-            } else {
-                request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
-                request.cachePolicy = .useProtocolCachePolicy
-            }
-            
             let (data, response) = try await URLSession.shared.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw URLError(.badServerResponse)
-            }
-            guard (200...299).contains(httpResponse.statusCode) else {
-                throw URLError(.badServerResponse)
-            }
-            
+            try validateResponse(response)
             let movieResponse = try JSONDecoder().decode(MoviesRoot.self, from: data)
             return movieResponse
         } catch {
             throw error
+        }
+    }
+    
+    private func configureCachePolicy(request: inout URLRequest, page: Int) {
+        if page > 1 {
+            request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+        } else {
+            request.setValue("max-age=86400", forHTTPHeaderField: "Cache-Control")
+            request.cachePolicy = .useProtocolCachePolicy
+        }
+    }
+    
+    private func validateResponse(_ response: URLResponse) throws {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
         }
     }
 }
