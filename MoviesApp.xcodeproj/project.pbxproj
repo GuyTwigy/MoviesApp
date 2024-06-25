@@ -257,11 +257,11 @@
 				9D55D2362C220CCE000FEFAB /* Assets.xcassets */,
 				9D55D2382C220CCE000FEFAB /* LaunchScreen.storyboard */,
 				9D55D23B2C220CCE000FEFAB /* Info.plist */,
+				9D55D2632C22204A000FEFAB /* AppConstants */,
 				9D2749AF2C2AA6D0005FF14E /* MovieAppManager */,
 				9D87DA302C2767600057EA83 /* CoreData */,
 				9D55D2602C220FFA000FEFAB /* Models */,
 				9D55D25D2C220F30000FEFAB /* NetworkManager */,
-				9D55D2632C22204A000FEFAB /* AppConstant */,
 				9D55D2692C222A27000FEFAB /* Extensions */,
 				9D8C0DC12C242F5400585EB7 /* Utils */,
 				9D43F2712C2447F3009A4613 /* VCs */,
@@ -308,12 +308,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9D55D2632C22204A000FEFAB /* AppConstant */ = {
+		9D55D2632C22204A000FEFAB /* AppConstants */ = {
 			isa = PBXGroup;
 			children = (
 				9D55D2642C22205A000FEFAB /* AppConstants.swift */,
 			);
-			path = AppConstant;
+			path = AppConstants;
 			sourceTree = "<group>";
 		};
 		9D55D2662C22266B000FEFAB /* MainVC */ = {

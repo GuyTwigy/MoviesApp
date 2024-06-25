@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class NetworkManager {
 
     let baseUrl = "https://api.themoviedb.org/3"
