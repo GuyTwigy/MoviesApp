@@ -42,9 +42,7 @@
 		9D8C0DA42C242D9C00585EB7 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA02C242D9C00585EB7 /* MainVC.swift */; };
 		9D8C0DA62C242E7F00585EB7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA52C242E7F00585EB7 /* NetworkManager.swift */; };
 		9D8C0DA82C242ED200585EB7 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA72C242ED200585EB7 /* MovieData.swift */; };
-		9D8C0DAB2C242F0000585EB7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA92C242F0000585EB7 /* UIViewControllerExtension.swift */; };
-		9D8C0DAC2C242F0000585EB7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DAA2C242F0000585EB7 /* UIViewExtension.swift */; };
-		9D8C0DC32C242F5400585EB7 /* UtilsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DC22C242F5400585EB7 /* UtilsHelpers.swift */; };
+		9D8C0DAB2C242F0000585EB7 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C0DA92C242F0000585EB7 /* ExtensionUIViewController.swift */; };
 		9D8C0DC92C2430B100585EB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8C0DC82C2430B100585EB7 /* Main.storyboard */; };
 		9D9AF36C2C256EDC00C2A549 /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AF36A2C256EDC00C2A549 /* OptionsCell.swift */; };
 		9D9AF36D2C256EDC00C2A549 /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9AF36B2C256EDC00C2A549 /* OptionsCell.xib */; };
@@ -120,9 +118,7 @@
 		9D8C0DA02C242D9C00585EB7 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9D8C0DA52C242E7F00585EB7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9D8C0DA72C242ED200585EB7 /* MovieData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
-		9D8C0DA92C242F0000585EB7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		9D8C0DAA2C242F0000585EB7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = "../../../Desktop/hapoalim 2/Extensions/UIViewExtension.swift"; sourceTree = "<group>"; };
-		9D8C0DC22C242F5400585EB7 /* UtilsHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsHelpers.swift; sourceTree = "<group>"; };
+		9D8C0DA92C242F0000585EB7 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		9D8C0DC82C2430B100585EB7 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9D9AF36A2C256EDC00C2A549 /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		9D9AF36B2C256EDC00C2A549 /* OptionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsCell.xib; sourceTree = "<group>"; };
@@ -263,7 +259,7 @@
 				9D55D2602C220FFA000FEFAB /* Models */,
 				9D55D25D2C220F30000FEFAB /* NetworkManager */,
 				9D55D2692C222A27000FEFAB /* Extensions */,
-				9D8C0DC12C242F5400585EB7 /* UtilsHelper */,
+				9D8C0DC12C242F5400585EB7 /* Utils */,
 				9D43F2712C2447F3009A4613 /* VCs */,
 			);
 			path = MoviesApp;
@@ -330,8 +326,7 @@
 		9D55D2692C222A27000FEFAB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9D8C0DAA2C242F0000585EB7 /* UIViewExtension.swift */,
-				9D8C0DA92C242F0000585EB7 /* UIViewControllerExtension.swift */,
+				9D8C0DA92C242F0000585EB7 /* ExtensionUIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,13 +354,12 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		9D8C0DC12C242F5400585EB7 /* UtilsHelper */ = {
+		9D8C0DC12C242F5400585EB7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9D8C0DC22C242F5400585EB7 /* UtilsHelpers.swift */,
 			);
-			name = UtilsHelper;
-			path = "../../Desktop/hapoalim 2/UtilsHelper";
+			name = Utils;
+			path = "../../Desktop/hapoalim 2/Utils";
 			sourceTree = "<group>";
 		};
 		D87D40812BEC2C181673A7A1 /* Pods */ = {
@@ -634,11 +628,9 @@
 				9D8C0DA62C242E7F00585EB7 /* NetworkManager.swift in Sources */,
 				9D8C0DA12C242D9C00585EB7 /* MainVM.swift in Sources */,
 				9D06B23D2C245466005CC698 /* DetailTrailerShareCell.swift in Sources */,
-				9D8C0DAB2C242F0000585EB7 /* UIViewControllerExtension.swift in Sources */,
-				9D8C0DAC2C242F0000585EB7 /* UIViewExtension.swift in Sources */,
+				9D8C0DAB2C242F0000585EB7 /* ExtensionUIViewController.swift in Sources */,
 				9D1CBEB62C29469C007709DD /* MovieAppManager.swift in Sources */,
 				9D87DA322C27677D0057EA83 /* CoreDataManager.swift in Sources */,
-				9D8C0DC32C242F5400585EB7 /* UtilsHelpers.swift in Sources */,
 				9D8C0DA82C242ED200585EB7 /* MovieData.swift in Sources */,
 				9D55D22E2C220CCD000FEFAB /* AppDelegate.swift in Sources */,
 				9D8C0DA42C242D9C00585EB7 /* MainVC.swift in Sources */,
