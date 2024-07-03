@@ -43,6 +43,14 @@ Features
    The app supports both iPhone and iPad devices, ensuring a versatile user experience across different screen sizes.
    Technical Details
 
+
+Testing
+
+The app includes test files to verify its functionality.
+
+
+Technical Details
+
 Language: Swift
 Architecture: MVVM
 Data Storage: Core Data
