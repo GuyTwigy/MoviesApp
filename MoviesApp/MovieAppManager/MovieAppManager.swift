@@ -14,156 +14,156 @@ class MovieAppManager {
     
     var localTopMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.topMoviesEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.topMoviesEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.topMoviesEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.topMoviesEmpty)
             defaults.synchronize()
         }
     }
     
     var dateTopMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.dateTopMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.dateTopMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.dateTopMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.dateTopMoviesAdded)
             defaults.synchronize()
         }
     }
     
     var localNowPlayingMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.nowPlayingMoviesIsEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.nowPlayingMoviesIsEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.nowPlayingMoviesIsEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.nowPlayingMoviesIsEmpty)
             defaults.synchronize()
         }
     }
     
     var dateNowPlayingMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.dateNowPlayingMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.dateNowPlayingMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.dateNowPlayingMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.dateNowPlayingMoviesAdded)
             defaults.synchronize()
         }
     }
     
     var localPopularMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.popularMoviesIsEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.popularMoviesIsEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.popularMoviesIsEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.popularMoviesIsEmpty)
             defaults.synchronize()
         }
     }
     
     var datePopularMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.datePopularMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.datePopularMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.datePopularMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.datePopularMoviesAdded)
             defaults.synchronize()
         }
     }
     
     var localTrendingMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.trendingMoviesIsEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.trendingMoviesIsEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.trendingMoviesIsEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.trendingMoviesIsEmpty)
             defaults.synchronize()
         }
     }
     
     var dateTrendingMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.dateTrendingMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.dateTrendingMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.dateTrendingMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.dateTrendingMoviesAdded)
             defaults.synchronize()
         }
     }
     
     var localUpcomingMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.upcomingMoviesIsEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.upcomingMoviesIsEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.upcomingMoviesIsEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.upcomingMoviesIsEmpty)
             defaults.synchronize()
         }
     }
     
     var dateUpcomingMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.dateUpcomingMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.dateUpcomingMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.dateUpcomingMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.dateUpcomingMoviesAdded)
             defaults.synchronize()
         }
     }
     
     var localSuggestionsMoviesIsEmpty: Bool {
         get {
-            if let isEmpty = defaults.value(forKey: AppConstants.UserDefualtsKey.suggestionsMoviesIsEmpty) as? Bool {
+            if let isEmpty = defaults.value(forKey: AppConstant.UserDefualtsKey.suggestionsMoviesIsEmpty) as? Bool {
                 return isEmpty
             }
             return true
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.suggestionsMoviesIsEmpty)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.suggestionsMoviesIsEmpty)
             defaults.synchronize()
         }
     }
     
     var dateSuggestedMoviesAdded: Date? {
         get {
-            if let date = defaults.value(forKey: AppConstants.UserDefualtsKey.dateSuggestedMoviesAdded) as? Date {
+            if let date = defaults.value(forKey: AppConstant.UserDefualtsKey.dateSuggestedMoviesAdded) as? Date {
                 return date
             }
             return nil
         }
         set {
-            defaults.setValue(newValue, forKey: AppConstants.UserDefualtsKey.dateSuggestedMoviesAdded)
+            defaults.setValue(newValue, forKey: AppConstant.UserDefualtsKey.dateSuggestedMoviesAdded)
             defaults.synchronize()
         }
     }
