@@ -17,6 +17,7 @@
 		9D06B23C2C245466005CC698 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D06B2332C245466005CC698 /* DetailCell.xib */; };
 		9D06B23D2C245466005CC698 /* DetailTrailerShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D06B2342C245466005CC698 /* DetailTrailerShareCell.swift */; };
 		9D06B23E2C245466005CC698 /* DetailImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D06B2352C245466005CC698 /* DetailImageCell.xib */; };
+		9D1775562C3539B100AB7030 /* UtilsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1775552C3539B100AB7030 /* UtilsHelper.swift */; };
 		9D1CBEAA2C281A61007709DD /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEA92C281A61007709DD /* MockCoreDataManager.swift */; };
 		9D1CBEAE2C287736007709DD /* MainVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEAD2C287735007709DD /* MainVCTests.swift */; };
 		9D1CBEB02C28A7FF007709DD /* MovieDetailsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CBEAF2C28A7FF007709DD /* MovieDetailsVMTests.swift */; };
@@ -90,6 +91,7 @@
 		9D06B2332C245466005CC698 /* DetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		9D06B2342C245466005CC698 /* DetailTrailerShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTrailerShareCell.swift; sourceTree = "<group>"; };
 		9D06B2352C245466005CC698 /* DetailImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailImageCell.xib; sourceTree = "<group>"; };
+		9D1775552C3539B100AB7030 /* UtilsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsHelper.swift; sourceTree = "<group>"; };
 		9D1CBEA92C281A61007709DD /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		9D1CBEAD2C287735007709DD /* MainVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTests.swift; sourceTree = "<group>"; };
 		9D1CBEAF2C28A7FF007709DD /* MovieDetailsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVMTests.swift; sourceTree = "<group>"; };
@@ -186,6 +188,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9D1775542C35398E00AB7030 /* UtilsHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9D1775552C3539B100AB7030 /* UtilsHelper.swift */,
+			);
+			path = UtilsHelper;
+			sourceTree = "<group>";
+		};
 		9D2749AF2C2AA6D0005FF14E /* MovieAppManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +271,7 @@
 				9D55D2602C220FFA000FEFAB /* Models */,
 				9D55D25D2C220F30000FEFAB /* NetworkManager */,
 				9D55D2692C222A27000FEFAB /* Extensions */,
+				9D1775542C35398E00AB7030 /* UtilsHelper */,
 				9D43F2712C2447F3009A4613 /* VCs */,
 			);
 			path = MoviesApp;
@@ -635,6 +646,7 @@
 				9D9AF3762C274FA600C2A549 /* MovieCell.swift in Sources */,
 				9D7CBC852C27893B004AEDBB /* TrailerVM.swift in Sources */,
 				9D87DA2F2C2763C10057EA83 /* MoviesAppCoreData.xcdatamodeld in Sources */,
+				9D1775562C3539B100AB7030 /* UtilsHelper.swift in Sources */,
 				9D55D2652C22205A000FEFAB /* AppConstants.swift in Sources */,
 				9D9AF3702C256EEE00C2A549 /* SuggestionsCell.swift in Sources */,
 				9D43F2702C2447C6009A4613 /* VideoData.swift in Sources */,
